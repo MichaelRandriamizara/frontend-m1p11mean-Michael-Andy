@@ -1,18 +1,36 @@
-var createError = require('http-errors');
-var express = require('express');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const mongoose = require('mongoose');
 
-var indexRouter = require('./routes/index');
+const indexRouter = require('./routes/index');
+const clientRouter = require('./routes/clientRoute')
 
-var app = express();
+const app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use('/', indexRouter);
+require('./dotenv')
+const connectionString = process.env.DB_URL
+
+mongoose.set("strictQuery", false);
+mongoose.connect(connectionString, {
+  useNewUrlParser: true,
+}
+).then(() => {
+  console.log("mongoDB is connected");
+}
+
+)
+.catch((err) => console.log(err));
+
+  app.use('/', indexRouter);
+  app.use('/clients', clientRouter);
+
 
 // error handler
 app.use(function(err, req, res, next) {
