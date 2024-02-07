@@ -17,6 +17,7 @@ export class EditEmployeeComponent implements OnInit{
     name: null,
     email: null,
     phone: null,
+    photo: "aaaa",
   };
 
 
@@ -28,8 +29,8 @@ export class EditEmployeeComponent implements OnInit{
   }
 
   onSubmit(): void {
-    const { name, email, phone } = this.form;
-    this.employeeService.update(this.id, {name, email, phone}, () => {
+    const { name, email, phone, photo } = this.form;
+    this.employeeService.update(this.id, {name, email, phone, photo}, () => {
       this.route.navigate(['/employe']);
     })
   }
