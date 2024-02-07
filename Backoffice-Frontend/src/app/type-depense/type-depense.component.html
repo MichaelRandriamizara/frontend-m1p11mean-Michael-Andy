@@ -21,15 +21,19 @@
             </tr>
           </thead>
           <tbody>
+          <ng-container *ngIf="Array.isArray(res)">
             <tr *ngFor="let item of res">
               <td *ngFor="let column of titles; index as i">
                 {{ getters[i](item)}}
               </td>
               <td>
-<!--                <app-my-button text="Modifier" icon="edit" color="primary" (click)="edit(item)" />-->
-                <app-my-button text="Supprimer" icon="delete" color="warn" (click)="delete(item._id)" />
+                <div class="d-flex">
+                  <app-my-button text="Modifier" icon="edit" color="warn" (click)="edit(item._id)" />
+                  <app-my-button text="Supprimer" icon="delete" color="danger" (click)="delete(item._id)" />
+                </div>
               </td>
             </tr>
+          </ng-container>
           </tbody>
 
         </table>

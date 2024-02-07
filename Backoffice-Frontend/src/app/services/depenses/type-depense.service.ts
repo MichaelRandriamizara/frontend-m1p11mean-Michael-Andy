@@ -42,11 +42,11 @@ export class TypeDepenseService {
     })
   }
 
-  update(id: string, data: any) {
+  update(id: string, data: any, next: (res: any) => void) {
     startApiCall(close => {
       this.http.put(DEP_API + id, data, httpOptions).subscribe(res => {
         close();
-        return res;
+        next(res);
       })
     })
   }

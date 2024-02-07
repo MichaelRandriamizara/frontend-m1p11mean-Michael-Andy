@@ -18,61 +18,19 @@ import {GetterFn, RowAction, SortResult} from "../interface";
 import {askConfirmation} from "../utils/sweet-alert.util";
 import {TypeDepenseService} from "../services/depenses/type-depense.service";
 import {MyButtonComponent} from "../my-button/my-button.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-type-depense',
-  // standalone: true,
-  // imports: [
-  //   CardComponent,
-  //   CardHeaderComponent,
-  //   CardBodyComponent,
-  //   RowComponent,
-  //   ButtonDirective,
-  //   MatIcon,
-  //   MatPaginator,
-  //   MatTable,
-  //   MatSort,
-  //   MatHeaderCell,
-  //   MatCell,
-  //   MatSortHeader,
-  //   MatColumnDef,
-  //   MatHeaderCellDef,
-  //   MatCellDef,
-  //   NgForOf,
-  //   MatIconButton,
-  //   MatHeaderRow,
-  //   MatRow,
-  //   MatHeaderRowDef,
-  //   MatRowDef,
-  //   NgIf,
-  //   MyButtonComponent
-  // ],
   templateUrl: './type-depense.component.html',
   styleUrl: './type-depense.component.scss'
 })
 export class TypeDepenseComponent {
-  actions !: RowAction[];
   getters: GetterFn[] = [];
   titles: string[] = ["Nom"];
   sorts: any = {};
   onRowClick?: (row: any) => any;
-  dataSource: MatTableDataSource<any> = new MatTableDataSource();
   res: any = {};
-    rowActions: RowAction[] = [
-      {
-        color: "primary",
-        icon: "edit",
-        onclick: (row: any, index: number) => {
-          console.log("edit", row, index);
-        },
-        type: "edit"
-      },
-        {
-            color: "warn",
-            icon: "delete",
-            onclick: (row) => askConfirmation(() => this.delete(row.id))
-        }
-    ];
 
   delete(id: string) {
       askConfirmation(() => {
@@ -82,22 +40,18 @@ export class TypeDepenseComponent {
       });
   }
 
+  edit(id: string) {
+    this.router.navigate(['type-depense/modifier', id]);
+  }
 
-  constructor(private typeDepenseService: TypeDepenseService) {
-    this.actions = this.rowActions;
+
+  constructor(private typeDepenseService: TypeDepenseService,private router:Router) {
     this.getters = [(item: any) => item.name];
     this.fetchList();
   }
-
-  click(row: any) {
-    if (this.actions) return;
-    if (this.onRowClick) this.onRowClick(row);
-  }
-
   fetchList() {
       this.typeDepenseService.getAll(data => {
-            this.res = data;
-            this.dataSource = this.res;
+        this.res = data;
       })
   }
 
@@ -108,8 +62,11 @@ export class TypeDepenseComponent {
     return this.sorts[keys[i]];
   }
 
-  add(){}
+  add(){
+    this.router.navigate(['type-depense/ajouter']);
+  }
 
   search(){}
 
+  protected readonly Array = Array;
 }

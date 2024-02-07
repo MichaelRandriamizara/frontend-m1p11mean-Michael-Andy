@@ -1,0 +1,25 @@
+<c-card>
+  <c-card-header>
+    <h3>Ajout type de depense</h3>
+  </c-card-header>
+  <c-card-body>
+    <form cForm name="form" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()">
+      <div class="mb-3">
+        <label cLabel for="name">Libelle du type de depense</label>
+        <input cFormControl
+               id="name"
+               placeholder="Libelle"
+               type="text"
+               name="name"
+               [(ngModel)]="form.name"
+               required
+        />
+      </div>
+
+<!--      button-->
+      <div class="mb-3">
+        <button cButton type="submit" [disabled]="f.form.invalid">Ajouter</button>
+      </div>
+    </form>
+  </c-card-body>
+</c-card>
