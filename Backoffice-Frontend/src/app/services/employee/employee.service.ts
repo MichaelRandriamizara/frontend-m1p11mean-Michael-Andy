@@ -25,6 +25,15 @@ export class EmployeeService {
     })
   }
 
+  create(data: any, next: (res: any) => void) {
+    startApiCall(close => {
+      this.http.post(DEP_API, data, httpOptions).subscribe(res => {
+        close();
+        next(res);
+      })
+    })
+  }
+
   delete(id: string, next: (res: any) => void) {
     startApiCall(close => {
       this.http.delete(DEP_API + id).subscribe(res => {
