@@ -16,10 +16,11 @@ import {MatColumnDef, MatTable} from "@angular/material/table";
 import {FormsModule} from "@angular/forms";
 import {ServiceComponent} from "./service.component";
 import {AddServiceComponent} from "./add-service/add-service.component";
+import {EditServiceComponent} from "./edit-service/edit-service.component";
 
 
 @NgModule({
-  declarations: [ServiceComponent, AddServiceComponent],
+  declarations: [ServiceComponent, AddServiceComponent, EditServiceComponent],
   imports: [
     CommonModule,
     ServiceRoutingModule,
