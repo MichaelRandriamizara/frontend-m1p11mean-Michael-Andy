@@ -15,10 +15,11 @@ import {MyButtonComponent} from "../my-button/my-button.component";
 import {MatColumnDef, MatTable} from "@angular/material/table";
 import {FormsModule} from "@angular/forms";
 import {ServiceComponent} from "./service.component";
+import {AddServiceComponent} from "./add-service/add-service.component";
 
 
 @NgModule({
-  declarations: [ServiceComponent],
+  declarations: [ServiceComponent, AddServiceComponent],
   imports: [
     CommonModule,
     ServiceRoutingModule,

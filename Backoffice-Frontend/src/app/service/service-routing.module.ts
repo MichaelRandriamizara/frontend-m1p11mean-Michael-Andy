@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {ServiceComponent} from "./service.component";
+import {AddServiceComponent} from "./add-service/add-service.component";
 
 const routes: Routes = [
   {
@@ -10,6 +11,13 @@ const routes: Routes = [
       title: 'Service'
     }
   },
+  {
+    path: 'ajouter',
+    component: AddServiceComponent,
+    data: {
+      title: 'Ajouter service'
+    }
+  }
 ];
 
 @NgModule({
