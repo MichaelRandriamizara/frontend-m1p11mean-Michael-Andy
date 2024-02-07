@@ -16,10 +16,11 @@ import {MyButtonComponent} from "../my-button/my-button.component";
 import {MatColumnDef, MatTable} from "@angular/material/table";
 import {FormsModule} from "@angular/forms";
 import {AddEmployeeComponent} from "./add-employee/add-employee.component";
+import {EditEmployeeComponent} from "./edit-employee/edit-employee.component";
 
 
 @NgModule({
-  declarations: [EmployeeComponent, AddEmployeeComponent],
+  declarations: [EmployeeComponent, AddEmployeeComponent, EditEmployeeComponent],
   imports: [
     CommonModule,
     EmployeeRoutingModule,
