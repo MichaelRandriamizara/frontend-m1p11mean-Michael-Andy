@@ -43,6 +43,7 @@ import {TypeDepenseService} from "./services/depenses/type-depense.service";
 import {StorageService} from "./services/auth/storage.service";
 import {AuthService} from "./services/auth/auth.service";
 import {HttpClientModule} from "@angular/common/http";
+import {ServiceService} from "./services/service/service.service";
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -91,7 +92,8 @@ const APP_CONTAINERS = [
     Title,
     TypeDepenseService,
     StorageService,
-    AuthService
+    AuthService,
+    ServiceService
   ],
   bootstrap: [AppComponent]
 })
