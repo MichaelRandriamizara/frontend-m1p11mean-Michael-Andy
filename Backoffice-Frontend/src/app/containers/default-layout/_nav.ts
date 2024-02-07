@@ -6,5 +6,10 @@ export const navItems: INavData[] = [
     url: '/dashboard',
     iconComponent: { name: 'cil-speedometer' },
   },
+  {
+    name: 'Type de dépense',
+    url: '/type-depense',
+    iconComponent: { name: 'cil-drop' },
+  }
 
 ];

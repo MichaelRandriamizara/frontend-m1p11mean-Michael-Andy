@@ -3,6 +3,8 @@ import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@a
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
+import {MatIconModule} from '@angular/material/icon';
+
 
 import { NgScrollbarModule } from 'ngx-scrollbar';
 
@@ -37,6 +39,10 @@ import {
 } from '@coreui/angular';
 
 import { IconModule, IconSetService } from '@coreui/icons-angular';
+import {TypeDepenseService} from "./services/depenses/type-depense.service";
+import {StorageService} from "./services/auth/storage.service";
+import {AuthService} from "./services/auth/auth.service";
+import {HttpClientModule} from "@angular/common/http";
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -72,7 +78,9 @@ const APP_CONTAINERS = [
     BadgeModule,
     ListGroupModule,
     CardModule,
-    NgScrollbarModule
+    NgScrollbarModule,
+    MatIconModule,
+    HttpClientModule
   ],
   providers: [
     {
@@ -80,7 +88,10 @@ const APP_CONTAINERS = [
       useClass: HashLocationStrategy
     },
     IconSetService,
-    Title
+    Title,
+    TypeDepenseService,
+    StorageService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
