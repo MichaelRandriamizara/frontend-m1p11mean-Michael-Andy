@@ -19,6 +19,7 @@ export class EmployeeService {
   getAll(next: (res: any) => void) {
     startApiCall(close => {
       this.http.get(DEP_API).subscribe(res => {
+        console.log(res);
         close();
         next(res);
       })
@@ -27,9 +28,9 @@ export class EmployeeService {
 
   get(id: string, next: (res: any) => void) {
     startApiCall(close => {
-      this.http.get(DEP_API + id).subscribe(res => {
+      this.http.get(DEP_API + id, {responseType: 'text'}).subscribe(res => {
         close();
-        next(res);
+        next(JSON.parse(res));
       })
     })
   }

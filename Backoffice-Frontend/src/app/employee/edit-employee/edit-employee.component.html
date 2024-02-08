@@ -40,6 +40,18 @@
         />
       </div>
 
+      <div class="mb-3">
+        <label cLabel for="role">Rôle</label>
+        <select cFormControl
+                id="role"
+                name="role"
+                [(ngModel)]="form.role"
+                required
+        >
+          <option *ngFor="let role of roles" [ngValue]="role['_id']">{{role.name}}</option>
+        </select>
+      </div>
+
       <!--      button-->
       <div class="mb-3">
         <button cButton type="submit" [disabled]="f.form.invalid">Modifier</button>
