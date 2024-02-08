@@ -12,14 +12,14 @@ import {Router} from "@angular/router";
 export class EmployeeComponent {
 
   getters: GetterFn[] = [];
-  titles: string[] = ["Nom", "Email", "Contact"];
+  titles: string[] = ["Nom", "Email", "Contact", "Role"];
   sorts: any = {};
   onRowClick?: (row: any) => any;
   res: any = {};
 
 
   constructor(private employeeService: EmployeeService,private router:Router) {
-    this.getters = [(item: any) => item.name, (item: any) => item.email, (item: any) => item.phone];
+    this.getters = [(item: any) => item.name, (item: any) => item.email, (item: any) => item.phone, (item: any) => item.role.name];
     this.fetchList();
   }
 
