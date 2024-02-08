@@ -12,7 +12,7 @@ import {Router} from "@angular/router";
 export class EmployeeComponent {
 
   getters: GetterFn[] = [];
-  titles: string[] = ["Nom", "Email", "Contact", "Role"];
+  titles: string[] = ["Nom", "Email", "Contact", "Rôle"];
   sorts: any = {};
   onRowClick?: (row: any) => any;
   res: any = {};
