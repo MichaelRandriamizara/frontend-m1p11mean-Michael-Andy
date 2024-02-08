@@ -45,6 +45,7 @@ import {AuthService} from "./services/auth/auth.service";
 import {HttpClientModule} from "@angular/common/http";
 import {ServiceService} from "./services/service/service.service";
 import {EmployeeService} from "./services/employee/employee.service";
+import {RoleService} from "./services/role/role.service";
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -95,7 +96,8 @@ const APP_CONTAINERS = [
     StorageService,
     AuthService,
     ServiceService,
-    EmployeeService
+    EmployeeService,
+    RoleService
   ],
   bootstrap: [AppComponent]
 })
