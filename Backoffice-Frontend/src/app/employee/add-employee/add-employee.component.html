@@ -1,0 +1,49 @@
+<c-card>
+  <c-card-header>
+    <h3>Ajout employé</h3>
+  </c-card-header>
+  <c-card-body>
+    <form cForm name="form" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()">
+      <div class="mb-3">
+      <label cLabel for="name">Nom</label>
+      <input cFormControl
+             id="name"
+             placeholder="Nom"
+             type="text"
+             name="name"
+             [(ngModel)]="form.name"
+             required
+      />
+    </div>
+
+      <div class="mb-3">
+        <label cLabel for="email">Email</label>
+        <input cFormControl
+               id="email"
+               placeholder="Email"
+               type="email"
+               name="email"
+               [(ngModel)]="form.email"
+               required
+        />
+      </div>
+
+      <div class="mb-3">
+        <label cLabel for="phone">Contact</label>
+        <input cFormControl
+               id="phone"
+               placeholder="Contact"
+               type="text"
+               name="phone"
+               [(ngModel)]="form.phone"
+               required
+        />
+      </div>
+
+      <!--      button-->
+      <div class="mb-3">
+        <button cButton type="submit" [disabled]="f.form.invalid">Ajouter</button>
+      </div>
+    </form>
+  </c-card-body>
+</c-card>
