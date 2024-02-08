@@ -43,6 +43,7 @@ import {TypeDepenseService} from "./services/depenses/type-depense.service";
 import {StorageService} from "./services/auth/storage.service";
 import {AuthService} from "./services/auth/auth.service";
 import {HttpClientModule} from "@angular/common/http";
+import {ServiceService} from "./services/service/service.service";
 import {EmployeeService} from "./services/employee/employee.service";
 
 const APP_CONTAINERS = [
@@ -93,6 +94,7 @@ const APP_CONTAINERS = [
     TypeDepenseService,
     StorageService,
     AuthService,
+    ServiceService,
     EmployeeService
   ],
   bootstrap: [AppComponent]

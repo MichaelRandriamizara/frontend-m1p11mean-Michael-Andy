@@ -1,0 +1,61 @@
+<c-card>
+  <c-card-header>
+    <h3>Modification service</h3>
+  </c-card-header>
+  <c-card-body>
+    <form cForm name="form" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()">
+      <div class="mb-3">
+        <label cLabel for="name">Nom</label>
+        <input cFormControl
+               id="name"
+               placeholder="Nom"
+               type="text"
+               name="name"
+               [(ngModel)]="form.name"
+               required
+        />
+      </div>
+
+      <div class="mb-3">
+        <label cLabel for="price">Prix</label>
+        <input cFormControl
+               id="price"
+               placeholder="Prix"
+               type="number"
+               name="price"
+               [(ngModel)]="form.price"
+               required
+        />
+      </div>
+
+      <div class="mb-3">
+        <label cLabel for="duration">Durée (en Minutes)</label>
+        <input cFormControl
+               id="duration"
+               placeholder="Durée"
+               type="number"
+               name="duration"
+               [(ngModel)]="form.duration"
+               required
+        />
+      </div>
+
+      <div class="mb-3">
+        <label cLabel for="commission">Commission (en %)</label>
+        <input cFormControl
+               id="commission"
+               placeholder="Commission"
+               type="number"
+               name="commission"
+               [(ngModel)]="form.commission"
+               required
+        />
+      </div>
+
+      <!--      button-->
+      <div class="mb-3">
+        <button cButton type="submit" [disabled]="f.form.invalid">Modifier</button>
+      </div>
+    </form>
+  </c-card-body>
+</c-card>
