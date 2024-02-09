@@ -8,13 +8,15 @@ import { ProfileComponent } from './profile/profile.component';
 import { SignupComponent } from './signup/signup.component';
 import { LandingComponent } from './landing/landing.component';
 import { LoginComponent } from './login/login.component';
+import {OurTeamComponent} from './our-team/our-team.component';
 
-const routes: Routes =[
+const routes: Routes = [
     { path: 'home',             component: HomeComponent },
     { path: 'user-profile',     component: ProfileComponent },
     { path: 'register',           component: SignupComponent },
     { path: 'landing',          component: LandingComponent },
     { path: 'login',          component: LoginComponent },
+    { path: 'team', component: OurTeamComponent},
     { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 

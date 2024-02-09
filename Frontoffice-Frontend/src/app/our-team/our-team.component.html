@@ -1,0 +1,89 @@
+<main>
+    <div class="position-relative">
+        <!-- shape Hero -->
+        <section class="section section-lg section-shaped pb-250">
+            <div class="shape shape-style-1 shape-default">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="container py-lg-md d-flex">
+                <div class="col px-0">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h1 class="display-3  text-white">Beauty Malagasy
+                                <span>Rencontrez Notre Équipe de Talentueux Professionnels de la Beauté</span>
+                            </h1>
+                            <p class="lead  text-white">Découvrez les visages derrière la magie de Beauty Malagasy! Notre équipe passionnée est composée des meilleurs experts de l'industrie, prêts à vous offrir une expérience de beauté inoubliable à chaque visite. Explorez qui nous sommes et ce que nous apportons à votre expérience de beauté.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section section-lg bg-secondary">
+            <div class="container">
+                <div class="row justify-content-center text-center mb-lg">
+                    <div class="col-lg-8">
+                        <h2 class="display-3">Notre Équipe</h2>
+                        <p class="lead text-muted">Notre équipe dévouée de professionnels de la beauté est là pour vous offrir une expérience exceptionnelle à chaque visite. Avec une passion partagée pour l'art de la beauté et un engagement envers l'excellence, chacun de nos employés apporte son talent unique et son expertise pour vous offrir des résultats époustouflants. Que ce soit pour une coupe de cheveux, une manucure parfaite ou un traitement de spa relaxant, faites confiance à notre équipe pour vous offrir un service personnalisé et attentionné à chaque fois. Nous sommes impatients de vous aider à révéler votre beauté intérieure et extérieure!.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <ng-container *ngFor="let employee of employees">
+                        <div class="col-md-6 col-lg-3 mb-5 mb-lg-0">
+                            <div class="px-4">
+                                <img src="./assets/img/theme/team-1-800x800.jpg" class="rounded-circle img-center img-fluid shadow shadow-lg--hover" style="width: 200px;">
+                                <div class="pt-4 text-center">
+                                    <h5 class="title">
+                                        <span class="d-block mb-1">{{employee.name}}</span>
+                                        <small class="h6 text-muted">{{employee?.role?.name}}</small>
+                                    </h5>
+                                    <div>
+                                        <ngb-rating [max]="5" [(rate)]="starRating" [readonly]="false"></ngb-rating>
+                                        <p>Rating: {{starRating}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-lg">
+            <div class="container">
+                <div class="row justify-content-center text-center mb-lg">
+                    <div class="col-lg-8">
+                        <h2 class="display-3">Nos services</h2>
+                        <p class="lead text-muted">Découvrez une gamme complète de services de beauté conçus pour vous faire rayonner. Des coupes de cheveux élégantes aux soins du visage rajeunissants, notre équipe talentueuse est là pour répondre à tous vos besoins. Explorez nos services et laissez-nous vous aider à atteindre vos objectifs de beauté et de bien-être. Prenez rendez-vous aujourd'hui et laissez-nous vous chouchouter!</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <ng-container *ngFor="let service of services">
+                        <div class="col-md-6 col-lg-3 mb-5 mb-lg-0">
+                            <div class="px-4">
+                                <img src="./assets/img/theme/team-1-800x800.jpg" class="rounded-circle img-center img-fluid shadow shadow-lg--hover" style="width: 200px;">
+                                <div class="pt-4 text-center">
+                                    <h5 class="title">
+                                        <span class="d-block mb-1">{{service.name}}</span>
+                                    </h5>
+                                    <div>
+                                        <ngb-rating [max]="5" [(rate)]="starRating" [readonly]="false"></ngb-rating>
+                                        <p>Rating: {{starRating}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</main>
