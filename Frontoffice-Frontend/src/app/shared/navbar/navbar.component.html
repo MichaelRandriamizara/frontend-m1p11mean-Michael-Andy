@@ -68,12 +68,18 @@
           </a>
         </li>
         <li class="nav-item d-none d-lg-block ml-lg-4">
-          <a [routerLink]="['/login']" class="btn btn-neutral btn-icon">
+          <a [routerLink]="['/login']" class="btn btn-neutral btn-icon" *ngIf="!isLogged">
             <span class="btn-inner--icon">
               <i class="fa fa-user-circle mr-2"></i>
             </span>
             <span class="nav-link-inner--text">Se connecter</span>
           </a>
+            <button (click)="logout()" class="btn btn-neutral btn-icon" *ngIf="isLogged">
+                <span class="btn-inner--icon">
+                <i class="fa fa-user-circle mr-2"></i>
+                </span>
+                <span class="nav-link-inner--text">Se déconnecter</span>
+            </button>
         </li>
       </ul>
     </div>
