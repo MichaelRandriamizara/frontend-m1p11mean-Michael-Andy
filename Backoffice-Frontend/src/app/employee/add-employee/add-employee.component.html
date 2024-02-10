@@ -52,6 +52,24 @@
         </select>
       </div>
 
+      <div class="mb-3" draggable="true" ngClass="{{dragAreaClass}}">
+        <div class="col-md-12 text-center">
+          Déposer votre photo de profil ici
+          <a href="javascript:void(0)" (click)="file.click()">
+            ou cliquer pour choisir une image
+          </a>
+        </div>
+        <input cFormControl
+               type="file"
+               #file
+                id="photo"
+                name="photo"
+                [multiple]="false"
+                (change)="onFileChange($event)"
+               accept="image/*"
+                style="display:none" />
+      </div>
+
       <!--      button-->
       <div class="mb-3">
         <button cButton type="submit" [disabled]="f.form.invalid">Ajouter</button>
