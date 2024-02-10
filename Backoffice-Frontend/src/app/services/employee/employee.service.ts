@@ -19,7 +19,6 @@ export class EmployeeService {
   getAll(next: (res: any) => void) {
     startApiCall(close => {
       this.http.get(DEP_API).subscribe(res => {
-        console.log(res);
         close();
         next(res);
       })
