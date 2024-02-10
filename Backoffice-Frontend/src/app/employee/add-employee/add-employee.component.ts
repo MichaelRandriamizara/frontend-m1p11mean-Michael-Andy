@@ -25,9 +25,7 @@ export class AddEmployeeComponent implements OnInit{
   dragAreaClass: string = "dragarea";
   onFileChange(event: any) {
     let files: FileList = event.target.files;
-    getBase64(files[0]).then((base64) => {
-      this.form.photo = base64;
-    });
+    this.getFile(files);
   }
 
   constructor( private employeeService: EmployeeService, private roleService: RoleService, private router: Router) {
@@ -46,6 +44,21 @@ export class AddEmployeeComponent implements OnInit{
       this.roles = data;
     });
     this.dragAreaClass = "dragarea";
+  }
+
+  getFile(files: FileList) {
+    if (files.length > 0) {
+      if (files[0].type.match(/image\/*/) == null) {
+        return;
+      }
+      getBase64(files[0]).then((base64) => {
+        this.form.photo = base64;
+      });
+    }
+  }
+
+  removePhoto() {
+    this.form.photo = null;
   }
 
   @HostListener("dragover", ["$event"]) onDragOver(event: any) {
@@ -70,9 +83,7 @@ export class AddEmployeeComponent implements OnInit{
     event.stopPropagation();
     if (event.dataTransfer.files) {
       let files: FileList = event.dataTransfer.files;
-      getBase64(files[0]).then((base64) => {
-        this.form.photo = base64;
-      });
+      this.getFile(files);
 
     }
   }

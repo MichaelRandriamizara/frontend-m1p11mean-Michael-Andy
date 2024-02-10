@@ -66,8 +66,14 @@
                 name="photo"
                 [multiple]="false"
                 (change)="onFileChange($event)"
-               accept="image/*"
+                accept="image/*"
                 style="display:none" />
+      </div>
+      <div class="mb-3" style="display: flex; flex-direction: column; align-items: center;">
+        <div *ngIf="form.photo !== undefined && form.photo !== null && form.photo !== ''" style="position: relative; width: 25%;">
+          <img id="displayPhoto" [src]="form.photo" alt="Photo de profil" style="height: 200px; width: auto;" />
+          <button (click)="removePhoto()" style="position: absolute; right: 0; top: 0;">X</button>
+        </div>
       </div>
 
       <!--      button-->
