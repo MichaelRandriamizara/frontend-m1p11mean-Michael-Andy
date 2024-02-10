@@ -31,7 +31,7 @@ export class ServiceComponent {
 
 
   constructor(private serviceService: ServiceService,private router:Router) {
-    this.getters = [(item: any) => item.name, (item: any) => item.price, (item: any) => item.duration, (item: any) => item.commission];
+    this.getters = [(item: any) => item.name, (item: any) => item.price.toLocaleString(), (item: any) => item.duration, (item: any) => item.commission];
     this.fetchList();
   }
   fetchList() {
