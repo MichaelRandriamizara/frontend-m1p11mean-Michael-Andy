@@ -52,6 +52,39 @@
         />
       </div>
 
+
+      <div class="mb-3" draggable="true" ngClass="{{dragAreaClass}}">
+        <div class="col-md-12 text-center">
+          Déposer vos images ici
+          <a href="javascript:void(0)" (click)="file.click()">
+            ou cliquer pour choisir vos images
+          </a>
+        </div>
+        <input cFormControl
+               type="file"
+               #file
+               id="photo"
+               name="photo"
+               [multiple]="true"
+               (change)="onFileChange($event)"
+               accept="image/*"
+               style="display:none" />
+      </div>
+      <div class="container">
+        <div class="row">
+          <ng-container *ngFor="let photo of form.photos; let i = index">
+            <div class="col-4 mb-3">
+              <div style="position: relative;">
+                <img id="displayPhoto" [src]="photo" style="height: 150px; width: auto;" />
+                <button (click)="removePhoto(photo)" style="position: absolute; right: 0; top: 0;">X</button>
+              </div>
+            </div>
+            <!-- Ajoute une nouvelle ligne après chaque troisième image -->
+            <div *ngIf="(i + 1) % 3 === 0" class="w-100"></div>
+          </ng-container>
+        </div>
+      </div>
+
       <!--      button-->
       <div class="mb-3">
         <button cButton type="submit" [disabled]="f.form.invalid">Modifier</button>
