@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { ServiceRoutingModule } from './service-routing.module';
 import {
+  ButtonCloseDirective,
   ButtonDirective,
   CardBodyComponent,
   CardComponent,
-  CardHeaderComponent, FormControlDirective,
+  CardHeaderComponent, CardImgDirective, FormControlDirective,
   FormDirective, FormLabelDirective,
   RowComponent,
   TableDirective
@@ -36,7 +37,9 @@ import {EditServiceComponent} from "./edit-service/edit-service.component";
     FormLabelDirective,
     FormControlDirective,
     FormsModule,
-    ButtonDirective
+    ButtonDirective,
+    ButtonCloseDirective,
+    CardImgDirective
   ]
 })
 export class ServiceModule { }
