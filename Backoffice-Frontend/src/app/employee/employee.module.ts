@@ -4,10 +4,11 @@ import { CommonModule } from '@angular/common';
 import { EmployeeRoutingModule } from './employee-routing.module';
 import {EmployeeComponent} from "./employee.component";
 import {
+  ButtonCloseDirective,
   ButtonDirective,
   CardBodyComponent,
   CardComponent,
-  CardHeaderComponent, FormControlDirective,
+  CardHeaderComponent, CardImgDirective, FormControlDirective,
   FormDirective, FormLabelDirective,
   RowComponent,
   TableDirective
@@ -36,7 +37,9 @@ import {EditEmployeeComponent} from "./edit-employee/edit-employee.component";
     FormLabelDirective,
     FormControlDirective,
     FormsModule,
-    ButtonDirective
+    ButtonDirective,
+    ButtonCloseDirective,
+    CardImgDirective
   ]
 })
 export class EmployeeModule { }
