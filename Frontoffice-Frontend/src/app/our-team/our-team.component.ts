@@ -11,8 +11,6 @@ import {Router} from '@angular/router';
   styleUrls: ['./our-team.component.css']
 })
 export class OurTeamComponent implements OnInit {
-  getters: GetterFn[] = [];
-  starRating = 0;
   employees: any;
   services: any;
   constructor(private employeeService: EmployeeService, private serviceService: ServiceService, private storageService: StorageService, private router: Router) {
@@ -26,7 +24,7 @@ export class OurTeamComponent implements OnInit {
     this.employeeService.getRanking(this.storageService.getUser()?.id, data => {
       this.employees = data;
     });
-    this.serviceService.getAll(data => {
+    this.serviceService.getRanking(this.storageService.getUser()?.id, data => {
       this.services = data;
     });
   }
@@ -41,6 +39,21 @@ export class OurTeamComponent implements OnInit {
         rating: rate.rating
       };
       this.employeeService.updateRating(notes, () => {
+        this.fetchList();
+      });
+    }
+  }
+
+  updateServiceRating(rate: any) {
+    if (this.storageService.getUser() == null) {
+      this.router.navigate(['/login']);
+    } else {
+      const notes   = {
+        serviceId: rate._id,
+        userId: this.storageService.getUser().id,
+        rating: rate.rating
+      };
+      this.serviceService.updateRating(notes, () => {
         this.fetchList();
       });
     }

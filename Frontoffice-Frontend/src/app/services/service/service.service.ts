@@ -21,4 +21,17 @@ export class ServiceService {
         next(res);
         });
     }
+
+    getRanking(id: string, next: (res: any) => void) {
+        this.http.get(baseUrl('api/serviceRatings/') + id).subscribe(res => {
+            next(res);
+        });
+    }
+
+    updateRating(rating: any, next: () => void) {
+        console.log(rating);
+        this.http.post(baseUrl('api/serviceRatings/'), rating, httpOptions).subscribe(res => {
+            next();
+        });
+    }
 }
