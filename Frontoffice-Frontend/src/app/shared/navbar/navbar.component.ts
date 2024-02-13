@@ -30,6 +30,9 @@ export class NavbarComponent implements OnInit {
         this.authService.getLoginStatusChanged().subscribe(isLogged => {
             this.isLogged = isLogged;
         });
+        if (this.storageService.getUser() != null) {
+            this.isLogged = true;
+        }
       this.router.events.subscribe((event) => {
         this.isCollapsed = true;
         if (event instanceof NavigationStart) {

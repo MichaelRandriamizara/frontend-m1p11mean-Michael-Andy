@@ -48,8 +48,8 @@
                                         <small class="h6 text-muted">{{employee?.role?.name}}</small>
                                     </h5>
                                     <div>
-                                        <ngb-rating [max]="5" [(rate)]="starRating" [readonly]="false"></ngb-rating>
-                                        <p>Rating: {{starRating}}</p>
+                                        <ngb-rating [max]="5" [(rate)]="employee.rating" (rateChange)="updateRating(employee)" [readonly]="false"></ngb-rating>
+                                        <p>Votre note: {{employee.rating}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -80,8 +80,8 @@
                                         <span class="d-block mb-1">{{service.name}}</span>
                                     </h5>
                                     <div>
-                                        <ngb-rating [max]="5" [(rate)]="starRating" [readonly]="false"></ngb-rating>
-                                        <p>Rating: {{starRating}}</p>
+                                        <ngb-rating [max]="5" [(rate)]="service.rating" (rateChange)="updateServiceRating(service)" [readonly]="false"></ngb-rating>
+                                        <p>Votre note: {{service.rating}}</p>
                                     </div>
                                 </div>
                             </div>

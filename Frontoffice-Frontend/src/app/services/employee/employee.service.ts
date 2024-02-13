@@ -22,4 +22,17 @@ export class EmployeeService {
       next(res);
     });
   }
+
+  getRanking(id: string, next: (res: any) => void) {
+    this.http.get(baseUrl('api/employeeRatings/') + id).subscribe(res => {
+      next(res);
+    });
+  }
+
+  updateRating(rating: any, next: () => void) {
+    console.log(rating);
+    this.http.post(baseUrl('api/employeeRatings/'), rating, httpOptions).subscribe(res => {
+      next();
+    });
+  }
 }
