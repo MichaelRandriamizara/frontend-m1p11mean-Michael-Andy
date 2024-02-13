@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {baseUrl} from '../../configurations/server.config';
 
-const AUTH_API = baseUrl('api/auth/user/');
+const AUTH_API = baseUrl('api/auth/employee/');
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -19,18 +19,6 @@ export class AuthService {
         return this.http.post(
             AUTH_API + 'signin',
             {
-                email,
-                password,
-            },
-            httpOptions
-        );
-    }
-
-    register(name: string, email: string, password: string): Observable<any> {
-        return this.http.post(
-            AUTH_API + 'signup',
-            {
-                name,
                 email,
                 password,
             },
