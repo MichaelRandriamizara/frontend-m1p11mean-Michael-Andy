@@ -20,6 +20,11 @@ export const navItems: INavData[] = [
     name: 'Type de dépense',
     url: '/type-depense',
     iconComponent: { name: 'cil-drop' },
+  },
+  {
+    name: 'Offre spéciale',
+    url: '/special-service',
+    iconComponent: { name: 'cil-dollar' },
   }
 
 ];
