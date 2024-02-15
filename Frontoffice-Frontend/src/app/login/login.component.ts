@@ -13,8 +13,8 @@ export class LoginComponent implements OnInit {
   focus;
   focus1;
   form: any = {
-    email: null,
-    password: null
+    email: 'test@mail.com',
+    password: '0000'
   };
   isLoggedIn = false;
   isLoginFailed = false;
@@ -32,22 +32,12 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     const { email, password } = this.form;
-    this.authService.login(email, password).subscribe({
-      next: data => {
-        this.storageService.saveUser(data);
-        this.authService.emitLoginStatusChange(true);
+    this.authService.login(email, password, (data: any) => {
+      this.authService.emitLoginStatusChange(true);
 
-        this.isLoginFailed = false;
-        this.isLoggedIn = true;
-        // this.roles = this.storageService.getUser().roles;
-        // this.reloadPage();
-        this.router.navigate(['/home']);
-      },
-      error: err => {
-        this.errorMessage = err.error.message;
-        this.isLoginFailed = true;
-      }
+      this.router.navigate(['/']);
     });
+
   }
 
   reloadPage(): void {
