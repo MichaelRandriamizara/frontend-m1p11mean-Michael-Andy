@@ -28,7 +28,7 @@
           </thead>
           <tbody>
           <ng-container *ngIf="Array.isArray(res)">
-            <tr *ngFor="let item of res">
+            <tr *ngFor="let item of res | paginate: { itemsPerPage: 10, currentPage: page, totalItems: count }">
               <td *ngFor="let column of titles; index as i">
                 {{ getters[i](item)}}
               </td>
@@ -44,14 +44,15 @@
 
         </table>
       </div>
+      <pagination-controls (pageChange)="pageChanged($event)" class="pagination"></pagination-controls>
 
-      <mat-paginator
-        [length]="totalPages || 10"
-        [pageSize]="count || 0"
-        aria-label="Select page"
-        (page)="pageChange($event)"
-        [hidePageSize]="true"
-      />
+<!--      <mat-paginator-->
+<!--        [length]="totalPages || 10"-->
+<!--        [pageSize]="count || 0"-->
+<!--        aria-label="Select page"-->
+<!--        (page)="pageChange($event)"-->
+<!--        [hidePageSize]="true"-->
+<!--      />-->
       </c-row>
     <div>
       <ng-content />

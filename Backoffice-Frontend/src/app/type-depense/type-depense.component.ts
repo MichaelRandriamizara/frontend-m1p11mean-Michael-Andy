@@ -60,11 +60,17 @@ export class TypeDepenseComponent {
     this.fetchList();
   }
 
+  pageChanged(event: any) {
+    this.page = event;
+    this.fetchList();
+  }
+
   add(){
     this.router.navigate(['type-depense/ajouter']);
   }
 
   search() {
+    this.page = 1;
     this.fetchList();
   }
 
