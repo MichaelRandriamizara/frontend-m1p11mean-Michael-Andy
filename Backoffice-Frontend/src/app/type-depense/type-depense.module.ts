@@ -16,27 +16,31 @@ import {MatColumnDef, MatTable} from "@angular/material/table";
 import {AddTypeDepenseComponent} from "./add-type-depense/add-type-depense.component";
 import {FormsModule} from "@angular/forms";
 import {EditTypeDepenseComponent} from "./edit-type-depense/edit-type-depense.component";
+import {MatPaginator} from "@angular/material/paginator";
+import {MatIconModule} from "@angular/material/icon";
 
 
 
 @NgModule({
   declarations: [TypeDepenseComponent,AddTypeDepenseComponent,EditTypeDepenseComponent],
-  imports: [
-    CommonModule,
-    TypeDepenseRoutingModule,
-    CardHeaderComponent,
-    CardBodyComponent,
-    CardComponent,
-    MyButtonComponent,
-    RowComponent,
-    MatTable,
-    MatColumnDef,
-    TableDirective,
-    FormDirective,
-    FormLabelDirective,
-    FormControlDirective,
-    FormsModule,
-    ButtonDirective
-  ]
+    imports: [
+        CommonModule,
+        TypeDepenseRoutingModule,
+        CardHeaderComponent,
+        CardBodyComponent,
+        CardComponent,
+        MyButtonComponent,
+        RowComponent,
+        MatTable,
+        MatColumnDef,
+        TableDirective,
+        FormDirective,
+        FormLabelDirective,
+        FormControlDirective,
+        FormsModule,
+        ButtonDirective,
+        MatPaginator,
+        MatIconModule
+    ]
 })
 export class TypeDepenseModule { }

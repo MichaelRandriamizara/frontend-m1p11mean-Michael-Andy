@@ -17,10 +17,8 @@ export class DefaultLayoutComponent implements OnInit {
 
   ngOnInit(): void {
     const role = this.service.getRole();
-    console.log(role);
     this.navItems = navItems.filter((nav) => {
       return nav.auth === undefined || nav.auth <= role.value
     })
-    console.log(this.navItems);
   }
 }
