@@ -1,19 +1,4 @@
 import {Component, EventEmitter} from '@angular/core';
-import {ButtonDirective, CardBodyComponent, CardComponent, CardHeaderComponent, RowComponent} from "@coreui/angular";
-import {MatIcon} from "@angular/material/icon";
-import {MatPaginator} from "@angular/material/paginator";
-import {
-  MatCell,
-  MatCellDef,
-  MatColumnDef,
-  MatHeaderCell,
-  MatHeaderCellDef,
-  MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef,
-  MatTable, MatTableDataSource
-} from "@angular/material/table";
-import {MatSort, MatSortHeader, Sort} from "@angular/material/sort";
-import {NgForOf, NgIf} from "@angular/common";
-import {MatIconButton} from "@angular/material/button";
 import {GetterFn, RowAction, SortResult} from "../interface";
 import {askConfirmation} from "../utils/sweet-alert.util";
 import {TypeDepenseService} from "../services/depenses/type-depense.service";
@@ -26,11 +11,17 @@ import {Router} from "@angular/router";
   styleUrl: './type-depense.component.scss'
 })
 export class TypeDepenseComponent {
+  nameFilter: string = '';
+  count: number = 0;
+  page: number = 1;
+  totalPages: number = 1;
   getters: GetterFn[] = [];
   titles: string[] = ["Nom"];
   sorts: any = {};
   onRowClick?: (row: any) => any;
   res: any = {};
+
+
 
   delete(id: string) {
       askConfirmation(() => {
@@ -50,8 +41,10 @@ export class TypeDepenseComponent {
     this.fetchList();
   }
   fetchList() {
-      this.typeDepenseService.getAll(data => {
-        this.res = data;
+    this.typeDepenseService.getAll(this.nameFilter, this.page,data => {
+        this.res = data.data;
+        this.count = data.count;
+        this.totalPages = data.totalPages;
       })
   }
 
@@ -62,11 +55,24 @@ export class TypeDepenseComponent {
     return this.sorts[keys[i]];
   }
 
+  pageChange(e: any) {
+    this.page = e.pageIndex + 1;
+    this.fetchList();
+  }
+
+  pageChanged(event: any) {
+    this.page = event;
+    this.fetchList();
+  }
+
   add(){
     this.router.navigate(['type-depense/ajouter']);
   }
 
-  search(){}
+  search() {
+    this.page = 1;
+    this.fetchList();
+  }
 
   protected readonly Array = Array;
 }

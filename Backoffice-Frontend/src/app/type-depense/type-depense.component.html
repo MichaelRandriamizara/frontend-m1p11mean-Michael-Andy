@@ -4,7 +4,13 @@
   </c-card-header>
   <c-card-body>
     <div class="d-flex">
-      <app-my-button class="p-2" text="Recherche" icon="search" color="primary" (click)="search()" />
+<!--      <app-my-button class="p-2" text="Recherche" icon="search" color="primary" (click)="search()" />-->
+      <div class="p-2">
+        <input cFormControl type="text" placeholder="Search by Name" [(ngModel)]="nameFilter">
+      </div>
+      <div class="p-2">
+        <button class="btn btn-primary" (click)="search()">Search</button>
+      </div>
       <app-my-button class="p-2" text="Ajouter" icon="add" color="primary" (click)="add()" />
     </div>
     <c-row style="padding-top: 16px;">
@@ -22,7 +28,7 @@
           </thead>
           <tbody>
           <ng-container *ngIf="Array.isArray(res)">
-            <tr *ngFor="let item of res">
+            <tr *ngFor="let item of res | paginate: { itemsPerPage: 10, currentPage: page, totalItems: count }">
               <td *ngFor="let column of titles; index as i">
                 {{ getters[i](item)}}
               </td>
@@ -38,13 +44,14 @@
 
         </table>
       </div>
-      <ng-content></ng-content>
+      <pagination-controls (pageChange)="pageChanged($event)" class="pagination"></pagination-controls>
 
 <!--      <mat-paginator-->
-<!--        [length]="res['count'] || 10"-->
-<!--        [pageSize]="res.pageSize || 0"-->
+<!--        [length]="totalPages || 10"-->
+<!--        [pageSize]="count || 0"-->
 <!--        aria-label="Select page"-->
 <!--        (page)="pageChange($event)"-->
+<!--        [hidePageSize]="true"-->
 <!--      />-->
       </c-row>
     <div>

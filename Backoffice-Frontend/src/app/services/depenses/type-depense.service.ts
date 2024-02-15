@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {baseUrl} from "../../configurations/server.config";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {startApiCall} from "../../utils/sweet-alert.util";
 import {StorageService} from "../auth/storage.service";
 import {ObserverObject} from "../../utils/error.handler";
@@ -21,15 +21,32 @@ export class TypeDepenseService {
 
   constructor(private http: HttpClient, private storageService:StorageService) { }
 
-  getAll(next: (res: any) => void) {
-    console.log("HTTP Options:", this.httpOptions);
+  getAll(nameFilter: string, page: number, next: (res: any) => void) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'employeeid': this.storageService.getUser().id,
+      }),
+      params: new HttpParams()
+        .set('page', page)
+        .set('size', 10)
+    };
+
+    // Set filters if provided
+    if (nameFilter) {
+      httpOptions.params = httpOptions.params.set('name', nameFilter);
+    }
+
+    console.log("HTTP Options:", httpOptions);
+
     startApiCall(close => {
-      this.http.get(DEP_API, this.httpOptions).subscribe(ObserverObject(res => {
+      this.http.get(DEP_API, httpOptions).subscribe(ObserverObject(res => {
         close();
         next(res);
-      }))
-    })
+      }));
+    });
   }
+
 
   get(id: string, next: (res: any) => void) {
     startApiCall(close => {

@@ -20,7 +20,6 @@ export const getAuthGuard: ({value, landingPage}: Auth) => CanActivateFn = ({val
     const authName: AuthName = inject(StorageService).getRole();
     const router: Router = inject(Router);
     if (authName) {
-      console.log(authName);
       const roleValue = authName.value;
       if (value <= roleValue) {
         return true;
