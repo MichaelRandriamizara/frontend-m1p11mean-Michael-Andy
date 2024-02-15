@@ -26,16 +26,9 @@ export class LoginComponent implements OnInit{
 
   login() {
     const { email, password } = this.form;
-    this.authService.login(email, password).subscribe({
-        next: data => {
-          this.storageService.saveUser(data);
-          window.sessionStorage.setItem("ROLE", JSON.stringify(data.role));
-          this.router.navigate(['/']);
-        },
-        error: err => {
-          console.log(err);
-        }
-      });
+    this.authService.login(email, password, (data: any) => {
+      this.router.navigate(['/']);
+    });
   }
 
 }

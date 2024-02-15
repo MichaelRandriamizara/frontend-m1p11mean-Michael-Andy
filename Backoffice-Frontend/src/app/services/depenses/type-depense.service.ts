@@ -3,6 +3,7 @@ import {baseUrl} from "../../configurations/server.config";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {startApiCall} from "../../utils/sweet-alert.util";
 import {StorageService} from "../auth/storage.service";
+import {ObserverObject} from "../../utils/error.handler";
 
 const DEP_API = baseUrl('api/typeDepenses/');
 
@@ -23,46 +24,46 @@ export class TypeDepenseService {
   getAll(next: (res: any) => void) {
     console.log("HTTP Options:", this.httpOptions);
     startApiCall(close => {
-      this.http.get(DEP_API, this.httpOptions).subscribe(res => {
+      this.http.get(DEP_API, this.httpOptions).subscribe(ObserverObject(res => {
         close();
         next(res);
-      })
+      }))
     })
   }
 
   get(id: string, next: (res: any) => void) {
     startApiCall(close => {
-      this.http.get(DEP_API + id, this.httpOptions).subscribe(res => {
+      this.http.get(DEP_API + id, this.httpOptions).subscribe(ObserverObject(res => {
         close();
         next(res);
-      })
+      }))
     })
   }
 
   create(data: any, next: (res: any) => void) {
     startApiCall(close => {
-      this.http.post(DEP_API, data, this.httpOptions).subscribe(res => {
+      this.http.post(DEP_API, data, this.httpOptions).subscribe(ObserverObject(res => {
         close();
         next(res);
-      })
+      }))
     })
   }
 
   update(id: string, data: any, next: (res: any) => void) {
     startApiCall(close => {
-      this.http.put(DEP_API + id, data, this.httpOptions).subscribe(res => {
+      this.http.put(DEP_API + id, data, this.httpOptions).subscribe(ObserverObject(res => {
         close();
         next(res);
-      })
+      }))
     })
   }
 
   delete(id: string, next: (res: any) => void) {
     startApiCall(close => {
-      this.http.delete(DEP_API + id, this.httpOptions).subscribe(res => {
+      this.http.delete(DEP_API + id, this.httpOptions).subscribe(ObserverObject(res => {
         close();
         next(res);
-      })
+      }))
     })
   }
 }
