@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit{
     this.authService.login(email, password).subscribe({
         next: data => {
           this.storageService.saveUser(data);
+          window.sessionStorage.setItem("ROLE", JSON.stringify(data.role));
           this.router.navigate(['/']);
         },
         error: err => {
