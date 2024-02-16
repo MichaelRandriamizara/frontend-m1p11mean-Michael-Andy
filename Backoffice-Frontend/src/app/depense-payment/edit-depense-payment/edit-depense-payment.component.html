@@ -1,0 +1,24 @@
+<c-card>
+  <c-card-header>
+    <h3>Modification paiement depense</h3>
+  </c-card-header>
+  <c-card-body>
+    <form cForm name="form" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()">
+      <div class="mb-3">
+        <label for="name" class="form-label">Nom</label>
+        <input cInput type="text" class="form-control" id="name" name="name" required [(ngModel)]="form.name">
+
+        <label for="date" class="form-label">Date</label>
+        <input cInput type="date" class="form-control" id="date" name="date" required [(ngModel)]="form.date">
+
+        <label for="value" class="form-label">Montant</label>
+        <input cInput type="number" class="form-control" id="value" name="value" required [(ngModel)]="form.value">
+      </div>
+
+      <!--      button-->
+      <div class="mb-3">
+        <button cButton type="submit" [disabled]="f.form.invalid">Modifier</button>
+      </div>
+    </form>
+  </c-card-body>
+</c-card>
