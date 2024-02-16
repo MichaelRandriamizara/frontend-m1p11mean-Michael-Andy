@@ -8,7 +8,7 @@ import {
   CardBodyComponent,
   CardComponent,
   CardHeaderComponent,
-  FormControlDirective,
+  FormControlDirective, FormDirective,
   RowComponent, TableDirective
 } from "@coreui/angular";
 import {FormsModule} from "@angular/forms";
@@ -16,10 +16,13 @@ import {MyButtonComponent} from "../my-button/my-button.component";
 import {NgxPaginationModule} from "ngx-pagination";
 import {AddTypeDepensePaymentComponent} from "./add-type-depense-payment/add-type-depense-payment.component";
 import {EditTypeDepensePaymentComponent} from "./edit-type-depense-payment/edit-type-depense-payment.component";
+import {DepensePaymentComponent} from "../depense-payment/depense-payment.component";
+import {EditDepensePaymentComponent} from "../depense-payment/edit-depense-payment/edit-depense-payment.component";
+import {AddDepensePaymentComponent} from "../depense-payment/add-depense-payment/add-depense-payment.component";
 
 
 @NgModule({
-  declarations: [TypeDepensePaymentComponent,AddTypeDepensePaymentComponent,EditTypeDepensePaymentComponent],
+  declarations: [TypeDepensePaymentComponent,AddTypeDepensePaymentComponent,EditTypeDepensePaymentComponent,DepensePaymentComponent,EditDepensePaymentComponent,AddDepensePaymentComponent],
   imports: [
     CommonModule,
     TypeDepensePaymentRoutingModule,
@@ -32,7 +35,8 @@ import {EditTypeDepensePaymentComponent} from "./edit-type-depense-payment/edit-
     NgxPaginationModule,
     RowComponent,
     TableDirective,
-    ButtonDirective
+    ButtonDirective,
+    FormDirective
   ]
 })
 export class TypeDepensePaymentModule { }
