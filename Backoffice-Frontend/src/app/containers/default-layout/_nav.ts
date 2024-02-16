@@ -39,6 +39,10 @@ export const navItems: CustomNavData[] = [
       {
         name: 'Depense mensuelle',
         url: '/paiement-depense/liste-mensuel'
+      },
+      {
+        name: 'Depense occasionnelle',
+        url: '/paiement-depense/liste-occasionnel'
       }
     ]
   }

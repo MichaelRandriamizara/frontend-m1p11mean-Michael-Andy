@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {TypeDepenseComponent} from "../type-depense/type-depense.component";
-import {AddTypeDepenseComponent} from "../type-depense/add-type-depense/add-type-depense.component";
-import {EditTypeDepenseComponent} from "../type-depense/edit-type-depense/edit-type-depense.component";
 import {TypeDepensePaymentComponent} from "./type-depense-payment.component";
 import {AddTypeDepensePaymentComponent} from "./add-type-depense-payment/add-type-depense-payment.component";
 import {EditTypeDepensePaymentComponent} from "./edit-type-depense-payment/edit-type-depense-payment.component";
+import {DepensePaymentComponent} from "../depense-payment/depense-payment.component";
+import {AddDepensePaymentComponent} from "../depense-payment/add-depense-payment/add-depense-payment.component";
+import {EditDepensePaymentComponent} from "../depense-payment/edit-depense-payment/edit-depense-payment.component";
 
 const routes: Routes = [
   {
@@ -32,6 +32,27 @@ const routes: Routes = [
     component: EditTypeDepensePaymentComponent,
     data: {
       title: 'Modifier paiement depense mensuel'
+    }
+  },
+  {
+    path: 'liste-occasionnel',
+    component: DepensePaymentComponent,
+    data: {
+      title: 'Paiement depense occasionnel'
+    }
+  },
+  {
+    path: 'ajouter-occasionnel',
+    component: AddDepensePaymentComponent,
+    data: {
+      title: 'Enregister paiement depense occasionnel'
+    }
+  },
+  {
+    path: 'modifier-occasionnel/:id',
+    component: EditDepensePaymentComponent,
+    data: {
+      title: 'Modifier paiement depense occasionnel'
     }
   }
 ];
