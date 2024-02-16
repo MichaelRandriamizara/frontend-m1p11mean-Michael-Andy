@@ -1,0 +1,42 @@
+<c-card>
+  <c-card-header>
+    <h3>Modification type de depense</h3>
+  </c-card-header>
+  <c-card-body>
+    <form cForm name="form" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()">
+      <div class="mb-3">
+        <label for="typeDepense" class="form-label">Type de dépense</label>
+        <select cInput class="form-select" id="typeDepense" name="typeDepense" required [(ngModel)]="form.typeDepense">
+          <option value="" disabled selected>Choisir un type de dépense</option>
+          <option *ngFor="let typeDepense of typeDepenses" [value]="typeDepense._id">{{typeDepense.name}}</option>
+        </select>
+        <label for="month" class="form-label">Mois</label>
+        <select cInput class="form-select" id="month" name="month" required [(ngModel)]="form.month">
+          <option value="1">Janvier</option>
+          <option value="2">Février</option>
+          <option value="3">Mars</option>
+          <option value="4">Avril</option>
+          <option value="5">Mai</option>
+          <option value="6">Juin</option>
+          <option value="7">Juillet</option>
+          <option value="8">Août</option>
+          <option value="9">Septembre</option>
+          <option value="10">Octobre</option>
+          <option value="11">Novembre</option>
+          <option value="12">Décembre</option>
+        </select>
+
+        <label for="year" class="form-label">Année</label>
+        <input cInput type="number" class="form-control" id="year" name="year" required [(ngModel)]="form.year">
+
+        <label for="value" class="form-label">Montant</label>
+        <input cInput type="number" class="form-control" id="value" name="value" required [(ngModel)]="form.value">
+      </div>
+
+      <!--      button-->
+      <div class="mb-3">
+        <button cButton type="submit" [disabled]="f.form.invalid">Ajouter</button>
+      </div>
+    </form>
+  </c-card-body>
+</c-card>

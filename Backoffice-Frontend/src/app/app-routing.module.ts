@@ -82,6 +82,12 @@ const routes: Routes = [
           import('./type-depense/type-depense.module').then((m) => m.TypeDepenseModule)
       },
       {
+        path: 'paiement-depense',
+        canActivate: [getAuthGuard(AUTH.ADMIN)],
+        loadChildren: () =>
+          import('./type-depense-payment/type-depense-payment.module').then((m) => m.TypeDepensePaymentModule)
+      },
+      {
         path: 'service',
         canActivate: [getAuthGuard(AUTH.ADMIN)],
         loadChildren: () =>
