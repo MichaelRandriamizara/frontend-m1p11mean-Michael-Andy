@@ -3,7 +3,7 @@ import {GetterFn} from "../interface";
 import {askConfirmation} from "../utils/sweet-alert.util";
 import {TypeDepensePaymentService} from "../services/typeDepensePayment/type-depense-payment.service";
 import {Router} from "@angular/router";
-import {transformMonthToFrench} from "../utils/string.util";
+import {formatDate, transformMonthToFrench} from "../utils/string.util";
 import {DepensePaymentService} from "../services/depensePayment/depense-payment.service";
 
 @Component({
@@ -38,7 +38,7 @@ export class DepensePaymentComponent {
 
 
   constructor(private depensePaymentService: DepensePaymentService,private router:Router) {
-    this.getters = [ (item: any) => item.date, (item: any) => item.value, (item: any) => item.name];
+    this.getters = [ (item: any) => formatDate(item.date), (item: any) => item.value, (item: any) => item.name];
     this.fetchList();
   }
   fetchList() {

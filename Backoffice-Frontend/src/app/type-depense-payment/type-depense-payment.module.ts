@@ -8,7 +8,7 @@ import {
   CardBodyComponent,
   CardComponent,
   CardHeaderComponent,
-  FormControlDirective,
+  FormControlDirective, FormDirective,
   RowComponent, TableDirective
 } from "@coreui/angular";
 import {FormsModule} from "@angular/forms";
@@ -35,7 +35,8 @@ import {AddDepensePaymentComponent} from "../depense-payment/add-depense-payment
     NgxPaginationModule,
     RowComponent,
     TableDirective,
-    ButtonDirective
+    ButtonDirective,
+    FormDirective
   ]
 })
 export class TypeDepensePaymentModule { }

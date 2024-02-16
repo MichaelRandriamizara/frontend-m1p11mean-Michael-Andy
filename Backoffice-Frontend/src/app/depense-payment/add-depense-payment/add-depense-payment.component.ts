@@ -3,6 +3,7 @@ import {TypeDepenseService} from "../../services/depenses/type-depense.service";
 import {Router} from "@angular/router";
 import {TypeDepensePaymentService} from "../../services/typeDepensePayment/type-depense-payment.service";
 import {DepensePaymentService} from "../../services/depensePayment/depense-payment.service";
+import {formatDateInput} from "../../utils/string.util";
 
 @Component({
   selector: 'app-add-type-depense',
@@ -11,7 +12,7 @@ import {DepensePaymentService} from "../../services/depensePayment/depense-payme
 })
 export class AddDepensePaymentComponent {
   form: any = {
-    date: null,
+    date: formatDateInput(new Date().toISOString()),
     value: null,
     name: null,
   };
