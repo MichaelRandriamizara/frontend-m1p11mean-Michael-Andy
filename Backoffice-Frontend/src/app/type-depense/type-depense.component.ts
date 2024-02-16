@@ -41,7 +41,7 @@ export class TypeDepenseComponent {
     this.fetchList();
   }
   fetchList() {
-    this.typeDepenseService.getAll(this.nameFilter, this.page,data => {
+    this.typeDepenseService.getAll(this.nameFilter, this.page, 10,data => {
         this.res = data.data;
         this.count = data.count;
         this.totalPages = data.totalPages;

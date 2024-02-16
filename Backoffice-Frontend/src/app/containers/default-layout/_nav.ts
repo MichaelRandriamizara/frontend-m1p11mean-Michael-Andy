@@ -29,6 +29,18 @@ export const navItems: CustomNavData[] = [
     url: '/type-depense',
     auth: AUTH.ADMIN.value,
     iconComponent: { name: 'cil-drop' },
+  },
+  {
+    name: 'Paiement de dépense',
+    url: '/paiement-depense',
+    auth: AUTH.ADMIN.value,
+    iconComponent: { name: 'cil-drop' },
+    children: [
+      {
+        name: 'Depense mensuelle',
+        url: '/paiement-depense/liste-mensuel'
+      }
+    ]
   }
 
 ];
