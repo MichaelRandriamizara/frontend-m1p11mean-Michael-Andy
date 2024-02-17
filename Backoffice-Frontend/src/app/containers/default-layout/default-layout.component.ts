@@ -1,15 +1,24 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
-import { navItems } from './_nav';
+import {CustomNavData, navItems} from './_nav';
+import {StorageService} from "../../services/auth/storage.service";
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './default-layout.component.html',
   styleUrls: ['./default-layout.component.scss'],
 })
-export class DefaultLayoutComponent {
+export class DefaultLayoutComponent implements OnInit {
 
-  public navItems = navItems;
+  public navItems: CustomNavData[] = [];
 
-  constructor() {}
+
+  constructor(private service : StorageService) {}
+
+  ngOnInit(): void {
+    const role = this.service.getRole();
+    this.navItems = navItems.filter((nav) => {
+      return nav.auth === undefined || nav.auth <= role.value
+    })
+  }
 }

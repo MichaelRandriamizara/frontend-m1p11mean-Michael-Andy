@@ -11,8 +11,13 @@ import {StorageService} from "../../../services/auth/storage.service";
 })
 export class LoginComponent implements OnInit{
   form: any = {
-    email: null,
-    password: null
+    email:"andy@mail.com",
+    password: "1234"
+  };
+
+  employeeAuth: any = {
+    email: 'jean@mail.com',
+    password: '1234'
   };
 
 
@@ -26,15 +31,9 @@ export class LoginComponent implements OnInit{
 
   login() {
     const { email, password } = this.form;
-    this.authService.login(email, password).subscribe({
-        next: data => {
-          this.storageService.saveUser(data);
-          this.router.navigate(['/']);
-        },
-        error: err => {
-          console.log(err);
-        }
-      });
+    this.authService.login(email, password, (data: any) => {
+      this.router.navigate(['/']);
+    });
   }
 
 }

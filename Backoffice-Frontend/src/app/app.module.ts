@@ -47,6 +47,10 @@ import {ServiceService} from "./services/service/service.service";
 import {EmployeeService} from "./services/employee/employee.service";
 import {RoleService} from "./services/role/role.service";
 import {SpecialServiceService} from "./services/special-service/special-service.service";
+import {paginatorConfig} from "./configurations/paginator.config";
+import {MatPaginatorIntl, MatPaginatorModule} from "@angular/material/paginator";
+import {MatButtonModule} from "@angular/material/button";
+import {NgxPaginationModule} from "ngx-pagination";
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -84,12 +88,17 @@ const APP_CONTAINERS = [
     CardModule,
     NgScrollbarModule,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy
+    },
+    {
+      provide: MatPaginatorIntl,
+      useValue: paginatorConfig()
     },
     IconSetService,
     Title,

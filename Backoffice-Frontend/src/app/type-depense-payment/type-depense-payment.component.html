@@ -1,0 +1,74 @@
+<c-card>
+  <c-card-header>
+    <h3>Paiement depense mensuel</h3>
+  </c-card-header>
+  <c-card-body>
+    <div class="d-flex align-items-center">
+      <div class="p-2">
+        <label for="month" class="form-label">Mois</label>
+        <select cInput class="form-select" id="month" name="month" required [(ngModel)]="monthFilter">
+          <option value="">Mois</option>
+          <option value="1">Janvier</option>
+          <option value="2">Février</option>
+          <option value="3">Mars</option>
+          <option value="4">Avril</option>
+          <option value="5">Mai</option>
+          <option value="6">Juin</option>
+          <option value="7">Juillet</option>
+          <option value="8">Août</option>
+          <option value="9">Septembre</option>
+          <option value="10">Octobre</option>
+          <option value="11">Novembre</option>
+          <option value="12">Décembre</option>
+        </select>
+      </div>
+      <div class="p-2">
+        <label for="yearFilter">Année</label>
+        <input cFormControl type="text" id="yearFilter" placeholder="Année" [(ngModel)]="yearFilter">
+      </div>
+      <div class="p-2">
+        <button class="btn btn-primary" (click)="search()">Rechercher</button>
+      </div>
+      <div class="p-2">
+        <app-my-button text="Ajouter" icon="add" color="primary" (click)="add()"></app-my-button>
+      </div>
+    </div>
+    <c-row style="padding-top: 16px;">
+      <div
+        class="mat-elevation-z2 table-responsive mb-4"
+      >
+        <table cTable>
+          <thead>
+          <tr>
+            <th scope="col" *ngFor="let title of titles">
+              {{ title }}
+            </th>
+            <th scope="col">Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <ng-container *ngIf="Array.isArray(res)">
+            <tr *ngFor="let item of res | paginate: { itemsPerPage: 10, currentPage: page, totalItems: count }">
+              <td *ngFor="let column of titles; index as i">
+                {{ getters[i](item)}}
+              </td>
+              <td>
+                <div class="d-flex">
+                  <app-my-button text="Modifier" icon="edit" color="warn" (click)="edit(item._id)" />
+                  <app-my-button text="Supprimer" icon="delete" color="danger" (click)="delete(item._id)" />
+                </div>
+              </td>
+            </tr>
+          </ng-container>
+          </tbody>
+
+        </table>
+      </div>
+      <pagination-controls (pageChange)="pageChanged($event)" class="pagination"></pagination-controls>
+
+    </c-row>
+    <div>
+      <ng-content />
+    </div>
+  </c-card-body>
+</c-card>

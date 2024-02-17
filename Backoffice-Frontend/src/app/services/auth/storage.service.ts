@@ -34,4 +34,12 @@ export class StorageService {
 
     return false;
   }
+
+  public getRole(): any {
+    const role = window.sessionStorage.getItem('ROLE');
+    if (role) {
+      return JSON.parse(role);
+    }
+    return '';
+  }
 }

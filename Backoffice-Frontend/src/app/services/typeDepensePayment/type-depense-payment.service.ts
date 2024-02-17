@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
-import {baseUrl} from "../../configurations/server.config";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
-import {startApiCall} from "../../utils/sweet-alert.util";
 import {StorageService} from "../auth/storage.service";
+import {startApiCall} from "../../utils/sweet-alert.util";
 import {ObserverObject} from "../../utils/error.handler";
+import {baseUrl} from "../../configurations/server.config";
 
-const DEP_API = baseUrl('api/typeDepenses/');
-
+const DEP_API = baseUrl('api/typeDepensePayments/');
 
 @Injectable({
   providedIn: 'root'
 })
-export class TypeDepenseService {
+export class TypeDepensePaymentService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json' ,
@@ -21,24 +20,24 @@ export class TypeDepenseService {
 
   constructor(private http: HttpClient, private storageService:StorageService) { }
 
-  getAll(nameFilter: string, page: number, size:number, next: (res: any) => void) {
+  getAll(monthFilter: number, yearFilter:number, page: number, next: (res: any) => void) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'employeeid': this.storageService.getUser().id,
       }),
       params: new HttpParams()
+        .set('page', page)
+        .set('size', 10)
     };
-    if(page!=0){
-      httpOptions.params = httpOptions.params.set('page', page);
-    }
-    if(size!=0){
-      httpOptions.params = httpOptions.params.set('size', size);
-    }
 
     // Set filters if provided
-    if (nameFilter) {
-      httpOptions.params = httpOptions.params.set('name', nameFilter);
+    if (monthFilter!==0) {
+      httpOptions.params = httpOptions.params.set('month', monthFilter);
+    }
+
+    if (yearFilter!==0) {
+      httpOptions.params = httpOptions.params.set('year', yearFilter);
     }
 
     console.log("HTTP Options:", httpOptions);
