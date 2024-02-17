@@ -30,7 +30,7 @@ export class EmployeeComponent {
   }
 
   fetchList() {
-    this.employeeService.getAll(this.keyWordFilter, this.page, this.size,data => {
+    this.employeeService.getAll(this.keyWordFilter, this.page, this.size, true, data => {
       this.res = data.data;
       this.count = data.count;
       this.totalPages = data.totalPages;
