@@ -19,10 +19,11 @@ import {FormsModule} from "@angular/forms";
 import {AddEmployeeComponent} from "./add-employee/add-employee.component";
 import {EditEmployeeComponent} from "./edit-employee/edit-employee.component";
 import {NgxPaginationModule} from "ngx-pagination";
+import {UpdatePaswordComponent} from "./update-pasword/update-pasword.component";
 
 
 @NgModule({
-  declarations: [EmployeeComponent, AddEmployeeComponent, EditEmployeeComponent],
+  declarations: [EmployeeComponent, AddEmployeeComponent, EditEmployeeComponent, UpdatePaswordComponent],
     imports: [
         CommonModule,
         EmployeeRoutingModule,

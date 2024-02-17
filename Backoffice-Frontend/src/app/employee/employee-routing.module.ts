@@ -4,6 +4,7 @@ import {CommonModule} from "@angular/common";
 import {EmployeeComponent} from "./employee.component";
 import {AddEmployeeComponent} from "./add-employee/add-employee.component";
 import {EditEmployeeComponent} from "./edit-employee/edit-employee.component";
+import {UpdatePaswordComponent} from "./update-pasword/update-pasword.component";
 
 const routes: Routes = [
   {
@@ -25,6 +26,13 @@ const routes: Routes = [
     component: EditEmployeeComponent,
     data: {
       title: 'Modifier employé'
+    }
+  },
+  {
+    path: 'modifier-mot-de-passe',
+    component: UpdatePaswordComponent,
+    data: {
+      title: 'Modifier mot de passe'
     }
   }
 ];

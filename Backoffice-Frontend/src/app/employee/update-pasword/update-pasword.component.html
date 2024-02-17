@@ -1,0 +1,49 @@
+<c-card>
+  <c-card-header>
+    <h3>Modifier mot de passe</h3>
+  </c-card-header>
+  <c-card-body>
+    <form cForm name="form" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()">
+      <div class="mb-3">
+        <label cLabel for="oldPassword">Ancien mot de passe</label>
+        <input cFormControl
+               id="oldPassword"
+               placeholder="Ancien mot de passe"
+               type="password"
+               name="oldPassword"
+               [(ngModel)]="form.oldPassword"
+               required
+        />
+      </div>
+
+      <div class="mb-3">
+        <label cLabel for="newPassword">Nouveau mot de passe</label>
+        <input cFormControl
+               id="newPassword"
+               placeholder="Nouveau mot de passe"
+               type="password"
+               name="newPassword"
+               [(ngModel)]="form.newPassword"
+               required
+        />
+      </div>
+
+      <div class="mb-3">
+        <label cLabel for="confirmPassword">Confirmer nouveau mot de passe</label>
+        <input cFormControl
+               id="confirmPassword"
+               placeholder="Confirmer nouveau mot de passe"
+               type="password"
+               name="confirmPassword"
+               [(ngModel)]="form.confirmPassword"
+               required
+        />
+      </div>
+
+      <!--      button-->
+      <div class="mb-3">
+        <button cButton type="submit" [disabled]="f.form.invalid">Modifier</button>
+      </div>
+    </form>
+  </c-card-body>
+</c-card>

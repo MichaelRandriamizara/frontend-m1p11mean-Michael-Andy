@@ -33,6 +33,7 @@ export const navItems: CustomNavData[] = [
   {
     name: 'Offre spéciale',
     url: '/special-service',
+    auth: AUTH.ADMIN.value,
     iconComponent: { name: 'cil-dollar' },
   },
   {
@@ -50,6 +51,12 @@ export const navItems: CustomNavData[] = [
         url: '/paiement-depense/liste-occasionnel'
       }
     ]
-  }
+  },
+  {
+    name: 'Modifier mot de passe',
+    url: '/employe/modifier-mot-de-passe',
+    auth: AUTH.EMPLOYEE.value,
+    iconComponent: { name: 'cil-lock-locked' },
+  },
 
 ];

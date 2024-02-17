@@ -9,6 +9,7 @@ import { RegisterComponent } from './views/pages/register/register.component';
 import {getAuthGuard} from "./auth/auth.guard";
 import {AUTH} from "./auth/auth";
 import {globalGuard} from "./auth/global/global.guard";
+import {UpdatePaswordComponent} from "./employee/update-pasword/update-pasword.component";
 
 const routes: Routes = [
   {
@@ -94,6 +95,11 @@ const routes: Routes = [
           import('./service/service.module').then((m) => m.ServiceModule)
       },
       {
+        path: 'employe/modifier-mot-de-passe',
+        canActivate: [getAuthGuard(AUTH.EMPLOYEE)],
+        component: UpdatePaswordComponent
+      },
+      {
         path: 'employe',
         canActivate: [getAuthGuard(AUTH.ADMIN)],
         loadChildren: () =>
@@ -101,9 +107,10 @@ const routes: Routes = [
       },
       {
         path: 'special-service',
+        canActivate: [getAuthGuard(AUTH.ADMIN)],
         loadChildren: () =>
           import('./special-service/special-service.module').then((m) => m.SpecialServiceModule)
-      }
+      },
     ]
   },
   {
