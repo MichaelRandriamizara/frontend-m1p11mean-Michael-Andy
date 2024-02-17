@@ -14,6 +14,7 @@ export class TypeDepenseComponent {
   nameFilter: string = '';
   count: number = 0;
   page: number = 1;
+  size: number = 10;
   totalPages: number = 1;
   getters: GetterFn[] = [];
   titles: string[] = ["Nom"];
@@ -41,7 +42,7 @@ export class TypeDepenseComponent {
     this.fetchList();
   }
   fetchList() {
-    this.typeDepenseService.getAll(this.nameFilter, this.page, 10,data => {
+    this.typeDepenseService.getAll(this.nameFilter, this.page, this.size,data => {
         this.res = data.data;
         this.count = data.count;
         this.totalPages = data.totalPages;
