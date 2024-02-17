@@ -18,28 +18,30 @@ import {FormsModule} from "@angular/forms";
 import {ServiceComponent} from "./service.component";
 import {AddServiceComponent} from "./add-service/add-service.component";
 import {EditServiceComponent} from "./edit-service/edit-service.component";
+import {NgxPaginationModule} from "ngx-pagination";
 
 
 @NgModule({
   declarations: [ServiceComponent, AddServiceComponent, EditServiceComponent],
-  imports: [
-    CommonModule,
-    ServiceRoutingModule,
-    CardHeaderComponent,
-    CardBodyComponent,
-    CardComponent,
-    MyButtonComponent,
-    RowComponent,
-    MatTable,
-    MatColumnDef,
-    TableDirective,
-    FormDirective,
-    FormLabelDirective,
-    FormControlDirective,
-    FormsModule,
-    ButtonDirective,
-    ButtonCloseDirective,
-    CardImgDirective
-  ]
+    imports: [
+        CommonModule,
+        ServiceRoutingModule,
+        CardHeaderComponent,
+        CardBodyComponent,
+        CardComponent,
+        MyButtonComponent,
+        RowComponent,
+        MatTable,
+        MatColumnDef,
+        TableDirective,
+        FormDirective,
+        FormLabelDirective,
+        FormControlDirective,
+        FormsModule,
+        ButtonDirective,
+        ButtonCloseDirective,
+        CardImgDirective,
+        NgxPaginationModule
+    ]
 })
 export class ServiceModule { }

@@ -6,10 +6,10 @@
     <div class="d-flex">
 <!--      <app-my-button class="p-2" text="Recherche" icon="search" color="primary" (click)="search()" />-->
       <div class="p-2">
-        <input cFormControl type="text" placeholder="Search by Name" [(ngModel)]="nameFilter">
+        <input cFormControl type="text" placeholder="Recherche par nom" [(ngModel)]="nameFilter">
       </div>
       <div class="p-2">
-        <button class="btn btn-primary" (click)="search()">Search</button>
+        <button class="btn btn-primary" (click)="search()">Rechercher</button>
       </div>
       <app-my-button class="p-2" text="Ajouter" icon="add" color="primary" (click)="add()" />
     </div>
@@ -28,7 +28,7 @@
           </thead>
           <tbody>
           <ng-container *ngIf="Array.isArray(res)">
-            <tr *ngFor="let item of res | paginate: { itemsPerPage: 10, currentPage: page, totalItems: count }">
+            <tr *ngFor="let item of res | paginate: { itemsPerPage: size, currentPage: page, totalItems: count }">
               <td *ngFor="let column of titles; index as i">
                 {{ getters[i](item)}}
               </td>
@@ -44,7 +44,10 @@
 
         </table>
       </div>
-      <pagination-controls (pageChange)="pageChanged($event)" class="pagination"></pagination-controls>
+      <pagination-controls previousLabel="Précédent"
+                           nextLabel="Suivant"
+                           [responsive]="true"
+                           (pageChange)="pageChanged($event)" class="pagination"></pagination-controls>
 
 <!--      <mat-paginator-->
 <!--        [length]="totalPages || 10"-->

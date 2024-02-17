@@ -18,28 +18,30 @@ import {MatColumnDef, MatTable} from "@angular/material/table";
 import {FormsModule} from "@angular/forms";
 import {AddEmployeeComponent} from "./add-employee/add-employee.component";
 import {EditEmployeeComponent} from "./edit-employee/edit-employee.component";
+import {NgxPaginationModule} from "ngx-pagination";
 
 
 @NgModule({
   declarations: [EmployeeComponent, AddEmployeeComponent, EditEmployeeComponent],
-  imports: [
-    CommonModule,
-    EmployeeRoutingModule,
-    CardHeaderComponent,
-    CardBodyComponent,
-    CardComponent,
-    MyButtonComponent,
-    RowComponent,
-    MatTable,
-    MatColumnDef,
-    TableDirective,
-    FormDirective,
-    FormLabelDirective,
-    FormControlDirective,
-    FormsModule,
-    ButtonDirective,
-    ButtonCloseDirective,
-    CardImgDirective
-  ]
+    imports: [
+        CommonModule,
+        EmployeeRoutingModule,
+        CardHeaderComponent,
+        CardBodyComponent,
+        CardComponent,
+        MyButtonComponent,
+        RowComponent,
+        MatTable,
+        MatColumnDef,
+        TableDirective,
+        FormDirective,
+        FormLabelDirective,
+        FormControlDirective,
+        FormsModule,
+        ButtonDirective,
+        ButtonCloseDirective,
+        CardImgDirective,
+        NgxPaginationModule
+    ]
 })
 export class EmployeeModule { }

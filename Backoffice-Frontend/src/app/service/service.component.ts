@@ -11,6 +11,18 @@ import {ServiceService} from "../services/service/service.service";
 })
 export class ServiceComponent {
 
+  nameFilter: string = '';
+  minPriceFilter!: number;
+  maxPriceFilter!: number;
+  minDurationFilter!: number;
+  maxDurationFilter!: number;
+  minCommissionFilter!: number;
+  maxCommissionFilter!: number;
+  count: number = 0;
+  page: number = 1;
+  size: number = 5;
+  totalPages: number = 1;
+
   getters: GetterFn[] = [];
   titles: string[] = ["Nom", "Prix", "Durée (en Minutes)", "Commission (en %)"];
   sorts: any = {};
@@ -35,8 +47,10 @@ export class ServiceComponent {
     this.fetchList();
   }
   fetchList() {
-    this.serviceService.getAll(data => {
-      this.res = data;
+    this.serviceService.getAll(this.nameFilter, this.minPriceFilter, this.maxPriceFilter, this.minDurationFilter, this.maxDurationFilter, this.minCommissionFilter, this.maxCommissionFilter, this.page, this.size, data => {
+      this.res = data.data;
+      this.count = data.count;
+      this.totalPages = data.totalPages;
     })
   }
 
@@ -51,7 +65,15 @@ export class ServiceComponent {
     this.router.navigate(['service/ajouter']);
   }
 
-  search(){}
+  search() {
+    this.page = 1;
+    this.fetchList();
+  }
+
+  pageChanged(event: any) {
+    this.page = event;
+    this.fetchList();
+  }
 
   protected readonly Array = Array;
 }
