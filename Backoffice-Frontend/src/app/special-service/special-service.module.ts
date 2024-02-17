@@ -15,6 +15,7 @@ import {MyButtonComponent} from "../my-button/my-button.component";
 import {MatColumnDef, MatTable} from "@angular/material/table";
 import {FormsModule} from "@angular/forms";
 import {AddSpecialServiceComponent} from "./add-special-service/add-special-service.component";
+import {NgSelectModule} from "@ng-select/ng-select";
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import {AddSpecialServiceComponent} from "./add-special-service/add-special-serv
     FormLabelDirective,
     FormControlDirective,
     FormsModule,
-    ButtonDirective
+    ButtonDirective,
+    NgSelectModule
   ]
 })
 export class SpecialServiceModule { }

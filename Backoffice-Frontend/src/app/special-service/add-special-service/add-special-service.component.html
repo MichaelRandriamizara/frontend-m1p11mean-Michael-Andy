@@ -4,17 +4,21 @@
   </c-card-header>
   <c-card-body>
     <form cForm name="form" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()">
-<!--      <div class="mb-3">-->
-<!--        <label cLabel for="name">Services</label>-->
-<!--        <input cFormControl-->
-<!--               id="name"-->
-<!--               placeholder="Libelle"-->
-<!--               type="text"-->
-<!--               name="name"-->
-<!--               [(ngModel)]="form.name"-->
-<!--               required-->
-<!--        />-->
-<!--      </div>-->
+      <div class="mb-3">
+        <ng-select
+          [items]="services"
+          bindLabel="name"
+          bindValue="_id"
+          placeholder="Services"
+          appendTo="body"
+          [multiple]="true"
+          [(ngModel)]="form.services"
+          (add)="onItemSelect($event)"
+          (remove)="onItemRemove($event)"
+          required
+        >
+        </ng-select>
+      </div>
 
       <div class="mb-3">
         <label cLabel for="promotion">Promotion (en %)</label>
