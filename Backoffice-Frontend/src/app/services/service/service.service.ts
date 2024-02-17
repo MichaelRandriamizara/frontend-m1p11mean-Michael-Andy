@@ -22,7 +22,7 @@ export class ServiceService {
 
   constructor(private http: HttpClient, private storageService:StorageService) { }
 
-  getAll(nameFilter: string, minPriceFilter: number, maxPriceFilter: number, minDurationFilter: number, maxDurationFilter: number, minCommissionFilter: number, maxCommissionFilter: number, page: number, size:number, ignorePhotos: boolean, next: (res: any) => void) {
+  getAll(nameFilter: string | undefined, minPriceFilter: number | undefined, maxPriceFilter: number | undefined, minDurationFilter: number | undefined, maxDurationFilter: number | undefined, minCommissionFilter: number | undefined, maxCommissionFilter: number | undefined, page: number, size:number, ignorePhotos: boolean, next: (res: any) => void) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',

@@ -31,6 +31,11 @@ export const navItems: CustomNavData[] = [
     iconComponent: { name: 'cil-drop' },
   },
   {
+    name: 'Offre spéciale',
+    url: '/special-service',
+    iconComponent: { name: 'cil-dollar' },
+  },
+  {
     name: 'Paiement de dépense',
     url: '/paiement-depense',
     auth: AUTH.ADMIN.value,

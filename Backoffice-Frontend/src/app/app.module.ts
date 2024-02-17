@@ -46,10 +46,12 @@ import {HttpClientModule} from "@angular/common/http";
 import {ServiceService} from "./services/service/service.service";
 import {EmployeeService} from "./services/employee/employee.service";
 import {RoleService} from "./services/role/role.service";
+import {SpecialServiceService} from "./services/special-service/special-service.service";
 import {paginatorConfig} from "./configurations/paginator.config";
 import {MatPaginatorIntl, MatPaginatorModule} from "@angular/material/paginator";
 import {MatButtonModule} from "@angular/material/button";
 import {NgxPaginationModule} from "ngx-pagination";
+import {NgSelectModule} from "@ng-select/ng-select";
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -88,7 +90,8 @@ const APP_CONTAINERS = [
     NgScrollbarModule,
     MatIconModule,
     HttpClientModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgSelectModule
   ],
   providers: [
     {
@@ -106,7 +109,8 @@ const APP_CONTAINERS = [
     AuthService,
     ServiceService,
     EmployeeService,
-    RoleService
+    RoleService,
+    SpecialServiceService
   ],
   bootstrap: [AppComponent]
 })

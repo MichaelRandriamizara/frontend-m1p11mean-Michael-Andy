@@ -98,6 +98,11 @@ const routes: Routes = [
         canActivate: [getAuthGuard(AUTH.ADMIN)],
         loadChildren: () =>
           import('./employee/employee.module').then((m) => m.EmployeeModule)
+      },
+      {
+        path: 'special-service',
+        loadChildren: () =>
+          import('./special-service/special-service.module').then((m) => m.SpecialServiceModule)
       }
     ]
   },
