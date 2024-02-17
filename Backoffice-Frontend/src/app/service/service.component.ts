@@ -47,7 +47,7 @@ export class ServiceComponent {
     this.fetchList();
   }
   fetchList() {
-    this.serviceService.getAll(this.nameFilter, this.minPriceFilter, this.maxPriceFilter, this.minDurationFilter, this.maxDurationFilter, this.minCommissionFilter, this.maxCommissionFilter, this.page, this.size, data => {
+    this.serviceService.getAll(this.nameFilter, this.minPriceFilter, this.maxPriceFilter, this.minDurationFilter, this.maxDurationFilter, this.minCommissionFilter, this.maxCommissionFilter, this.page, this.size, true, data => {
       this.res = data.data;
       this.count = data.count;
       this.totalPages = data.totalPages;
