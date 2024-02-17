@@ -24,7 +24,7 @@ export class EmployeeService {
 
   constructor(private http: HttpClient, private storageService:StorageService) { }
 
-  getAll(keyWordFilter: string, page: number, size:number, next: (res: any) => void) {
+  getAll(keyWordFilter: string, page: number, size:number, ignorePhoto: boolean, next: (res: any) => void) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -43,6 +43,7 @@ export class EmployeeService {
     if (keyWordFilter) {
       httpOptions.params = httpOptions.params.set('keyWord', keyWordFilter);
     }
+    httpOptions.params = httpOptions.params.set('ignorePhoto', ignorePhoto);
 
     startApiCall(close => {
       this.http.get(DEP_API, httpOptions).subscribe(ObserverObject(res => {
