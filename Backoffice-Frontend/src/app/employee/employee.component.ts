@@ -11,6 +11,12 @@ import {Router} from "@angular/router";
 })
 export class EmployeeComponent {
 
+  keyWordFilter: string = '';
+  count: number = 0;
+  page: number = 1;
+  size: number = 10;
+
+  totalPages: number = 1;
   getters: GetterFn[] = [];
   titles: string[] = ["Nom", "Email", "Contact", "Rôle"];
   sorts: any = {};
@@ -24,8 +30,10 @@ export class EmployeeComponent {
   }
 
   fetchList() {
-    this.employeeService.getAll(data => {
-      this.res = data;
+    this.employeeService.getAll(this.keyWordFilter, this.page, this.size,data => {
+      this.res = data.data;
+      this.count = data.count;
+      this.totalPages = data.totalPages;
     })
   }
 
@@ -45,6 +53,23 @@ export class EmployeeComponent {
     this.router.navigate(['employe/ajouter']);
   }
 
-  search(){}
+  search() {
+    this.page = 1;
+    this.fetchList();
+  }
+
+  getSorted (title: string) {
+    let keys = Object.keys(this.sorts)
+    let i = keys.indexOf(title);
+    if (i < 0) return undefined;
+    return this.sorts[keys[i]];
+  }
+
+  pageChanged(event: any) {
+    this.page = event;
+    this.fetchList();
+  }
+
+
   protected readonly Array = Array;
 }
