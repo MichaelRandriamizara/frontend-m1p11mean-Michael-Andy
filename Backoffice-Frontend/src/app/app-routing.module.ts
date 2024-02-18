@@ -6,6 +6,10 @@ import { Page404Component } from './views/pages/page404/page404.component';
 import { Page500Component } from './views/pages/page500/page500.component';
 import { LoginComponent } from './views/pages/login/login.component';
 import { RegisterComponent } from './views/pages/register/register.component';
+import {getAuthGuard} from "./auth/auth.guard";
+import {AUTH} from "./auth/auth";
+import {globalGuard} from "./auth/global/global.guard";
+import {UpdatePaswordComponent} from "./employee/update-pasword/update-pasword.component";
 
 const routes: Routes = [
   {
@@ -16,12 +20,14 @@ const routes: Routes = [
   {
     path: '',
     component: DefaultLayoutComponent,
+    canActivate:[globalGuard],
     data: {
       title: 'Home'
     },
     children: [
       {
         path: 'dashboard',
+        canActivate: [getAuthGuard(AUTH.EMPLOYEE)],
         loadChildren: () =>
           import('./views/dashboard/dashboard.module').then((m) => m.DashboardModule)
       },
@@ -69,6 +75,41 @@ const routes: Routes = [
         path: 'pages',
         loadChildren: () =>
           import('./views/pages/pages.module').then((m) => m.PagesModule)
+      },
+      {
+        path: 'type-depense',
+        canActivate: [getAuthGuard(AUTH.ADMIN)],
+        loadChildren: () =>
+          import('./type-depense/type-depense.module').then((m) => m.TypeDepenseModule)
+      },
+      {
+        path: 'paiement-depense',
+        canActivate: [getAuthGuard(AUTH.ADMIN)],
+        loadChildren: () =>
+          import('./type-depense-payment/type-depense-payment.module').then((m) => m.TypeDepensePaymentModule)
+      },
+      {
+        path: 'service',
+        canActivate: [getAuthGuard(AUTH.ADMIN)],
+        loadChildren: () =>
+          import('./service/service.module').then((m) => m.ServiceModule)
+      },
+      {
+        path: 'employe/modifier-mot-de-passe',
+        canActivate: [getAuthGuard(AUTH.EMPLOYEE)],
+        component: UpdatePaswordComponent
+      },
+      {
+        path: 'employe',
+        canActivate: [getAuthGuard(AUTH.ADMIN)],
+        loadChildren: () =>
+          import('./employee/employee.module').then((m) => m.EmployeeModule)
+      },
+      {
+        path: 'special-service',
+        canActivate: [getAuthGuard(AUTH.ADMIN)],
+        loadChildren: () =>
+          import('./special-service/special-service.module').then((m) => m.SpecialServiceModule)
       },
     ]
   },

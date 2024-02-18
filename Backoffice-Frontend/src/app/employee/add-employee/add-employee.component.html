@@ -1,0 +1,85 @@
+<c-card>
+  <c-card-header>
+    <h3>Ajout employé</h3>
+  </c-card-header>
+  <c-card-body>
+    <form cForm name="form" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()">
+      <div class="mb-3">
+      <label cLabel for="name">Nom</label>
+      <input cFormControl
+             id="name"
+             placeholder="Nom"
+             type="text"
+             name="name"
+             [(ngModel)]="form.name"
+             required
+      />
+    </div>
+
+      <div class="mb-3">
+        <label cLabel for="email">Email</label>
+        <input cFormControl
+               id="email"
+               placeholder="Email"
+               type="email"
+               name="email"
+               [(ngModel)]="form.email"
+               required
+        />
+      </div>
+
+      <div class="mb-3">
+        <label cLabel for="phone">Contact</label>
+        <input cFormControl
+               id="phone"
+               placeholder="Contact"
+               type="text"
+               name="phone"
+               [(ngModel)]="form.phone"
+               required
+        />
+      </div>
+
+      <div class="mb-3">
+        <label cLabel for="role">Rôle</label>
+        <select cFormControl
+                id="role"
+                name="role"
+                [(ngModel)]="form.role"
+                required
+        >
+          <option *ngFor="let role of roles" [ngValue]="role['_id']">{{role.name}}</option>
+        </select>
+      </div>
+
+      <div class="mb-3" draggable="true" ngClass="{{dragAreaClass}}">
+        <div class="col-md-12 text-center">
+          Déposez votre photo de profil ici
+          <a href="javascript:void(0)" (click)="file.click()">
+            ou cliquez pour choisir une image
+          </a>
+        </div>
+        <input cFormControl
+               type="file"
+               #file
+                id="photo"
+                name="photo"
+                [multiple]="false"
+                (change)="onFileChange($event)"
+                accept="image/*"
+                style="display:none" />
+      </div>
+      <div class="mb-3" style="display: flex; flex-direction: column; align-items: center;">
+        <c-card *ngIf="form.photo !== undefined && form.photo !== null && form.photo !== ''">
+            <img cCardImg="top" id="displayPhoto" [src]="form.photo" alt="Photo de profil" style="height: 200px; width: auto;" />
+            <button cButtonClose (click)="removePhoto()" style="background-color: red; position: absolute; right: 0; top: 0;"></button>
+        </c-card>
+      </div>
+
+      <!--      button-->
+      <div class="mb-3">
+        <button cButton type="submit" [disabled]="f.form.invalid">Ajouter</button>
+      </div>
+    </form>
+  </c-card-body>
+</c-card>

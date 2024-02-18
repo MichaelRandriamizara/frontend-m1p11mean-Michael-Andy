@@ -3,6 +3,8 @@ import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@a
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
+import {MatIconModule} from '@angular/material/icon';
+
 
 import { NgScrollbarModule } from 'ngx-scrollbar';
 
@@ -37,6 +39,19 @@ import {
 } from '@coreui/angular';
 
 import { IconModule, IconSetService } from '@coreui/icons-angular';
+import {TypeDepenseService} from "./services/depenses/type-depense.service";
+import {StorageService} from "./services/auth/storage.service";
+import {AuthService} from "./services/auth/auth.service";
+import {HttpClientModule} from "@angular/common/http";
+import {ServiceService} from "./services/service/service.service";
+import {EmployeeService} from "./services/employee/employee.service";
+import {RoleService} from "./services/role/role.service";
+import {SpecialServiceService} from "./services/special-service/special-service.service";
+import {paginatorConfig} from "./configurations/paginator.config";
+import {MatPaginatorIntl, MatPaginatorModule} from "@angular/material/paginator";
+import {MatButtonModule} from "@angular/material/button";
+import {NgxPaginationModule} from "ngx-pagination";
+import {NgSelectModule} from "@ng-select/ng-select";
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -72,15 +87,30 @@ const APP_CONTAINERS = [
     BadgeModule,
     ListGroupModule,
     CardModule,
-    NgScrollbarModule
+    NgScrollbarModule,
+    MatIconModule,
+    HttpClientModule,
+    NgxPaginationModule,
+    NgSelectModule
   ],
   providers: [
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy
     },
+    {
+      provide: MatPaginatorIntl,
+      useValue: paginatorConfig()
+    },
     IconSetService,
-    Title
+    Title,
+    TypeDepenseService,
+    StorageService,
+    AuthService,
+    ServiceService,
+    EmployeeService,
+    RoleService,
+    SpecialServiceService
   ],
   bootstrap: [AppComponent]
 })
