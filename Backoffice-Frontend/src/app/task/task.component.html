@@ -1,0 +1,57 @@
+<c-card>
+  <c-card-header>
+    <h3>Liste des taches</h3>
+  </c-card-header>
+  <c-card-body>
+    <div class="d-flex">
+      <app-my-button class="p-2" text="Ajouter" icon="add" color="primary" (click)="add()" />
+    </div>
+    <c-row style="padding-top: 16px;">
+      <div
+        class="mat-elevation-z2 table-responsive mb-4"
+      >
+        <table cTable>
+          <thead>
+          <tr>
+            <th scope="col" *ngFor="let title of titles">
+              {{ title }}
+            </th>
+            <th scope="col">Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <ng-container *ngIf="Array.isArray(res)">
+            <tr *ngFor="let item of res | paginate: { itemsPerPage: size, currentPage: page, totalItems: count }">
+              <td *ngFor="let column of titles; index as i">
+                {{ getters[i](item)}}
+              </td>
+              <td>
+                <div class="d-flex">
+                  <app-my-button text="Voir" icon="remove_red_eye" color="warn" />
+
+                </div>
+              </td>
+            </tr>
+          </ng-container>
+          </tbody>
+
+        </table>
+      </div>
+      <pagination-controls previousLabel="Précédent"
+                           nextLabel="Suivant"
+                           [responsive]="true"
+                           (pageChange)="pageChanged($event)" class="pagination"></pagination-controls>
+
+      <!--      <mat-paginator-->
+      <!--        [length]="totalPages || 10"-->
+      <!--        [pageSize]="count || 0"-->
+      <!--        aria-label="Select page"-->
+      <!--        (page)="pageChange($event)"-->
+      <!--        [hidePageSize]="true"-->
+      <!--      />-->
+    </c-row>
+    <div>
+      <ng-content />
+    </div>
+  </c-card-body>
+</c-card>

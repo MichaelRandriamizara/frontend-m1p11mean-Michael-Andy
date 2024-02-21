@@ -52,6 +52,7 @@ import {MatPaginatorIntl, MatPaginatorModule} from "@angular/material/paginator"
 import {MatButtonModule} from "@angular/material/button";
 import {NgxPaginationModule} from "ngx-pagination";
 import {NgSelectModule} from "@ng-select/ng-select";
+import {TaskService} from "./services/task/task.service";
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -110,7 +111,8 @@ const APP_CONTAINERS = [
     ServiceService,
     EmployeeService,
     RoleService,
-    SpecialServiceService
+    SpecialServiceService,
+    TaskService
   ],
   bootstrap: [AppComponent]
 })

@@ -13,6 +13,12 @@ export const navItems: CustomNavData[] = [
     iconComponent: { name: 'cil-speedometer' },
   },
   {
+    name: 'Tâche',
+    url: '/tache',
+    auth: AUTH.EMPLOYEE.value,
+    iconComponent: { name: 'cil-list' },
+  },
+  {
     name: 'Service',
     url: '/service',
     auth: AUTH.ADMIN.value,
