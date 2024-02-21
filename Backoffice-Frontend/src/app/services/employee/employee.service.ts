@@ -9,7 +9,6 @@ import {ObserverObject} from "../../utils/error.handler";
 const DEP_API = baseUrl('api/employees/');
 
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -92,6 +91,24 @@ export class EmployeeService {
   updatePassword(data: any, next: (res: any) => void) {
     startApiCall(close => {
       this.http.put(DEP_API + "updatePassword", data, this.httpOptions).subscribe(ObserverObject (res => {
+        close();
+        next(res);
+      }))
+    })
+  }
+
+  checkIn(id: string, next: (res: any) => void) {
+    startApiCall(close => {
+      this.http.post(baseUrl('api/employeeCheckIn/') + id, this.httpOptions).subscribe(ObserverObject (res => {
+        close();
+        next(res);
+      }))
+    })
+  }
+
+  checkOut(id: string, next: (res: any) => void) {
+    startApiCall(close => {
+      this.http.put(baseUrl('api/employeeCheckOut/') + id, this.httpOptions).subscribe(ObserverObject (res => {
         close();
         next(res);
       }))

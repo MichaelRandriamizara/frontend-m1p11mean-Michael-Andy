@@ -45,6 +45,22 @@ export class EmployeeComponent {
     });
   }
 
+  checkIn(id: string) {
+    askConfirmation(() => {
+      this.employeeService.checkIn(id, () => {
+        this.fetchList();
+      })
+    });
+  }
+
+  checkOut(id: string) {
+    askConfirmation(() => {
+      this.employeeService.checkOut(id, () => {
+        this.fetchList();
+      })
+    });
+  }
+
   edit(id: string) {
     this.router.navigate(['employe/modifier', id]);
   }
@@ -70,6 +86,14 @@ export class EmployeeComponent {
     this.fetchList();
   }
 
+  isToday(dateString: Date): boolean {
+    if (dateString === undefined || dateString === null) return false ;
+    const today = new Date();
+    const date = new Date(dateString);
+    return date.getUTCDate() === today.getUTCDate() &&
+      date.getUTCMonth() === today.getUTCMonth() &&
+      date.getUTCFullYear() === today.getUTCFullYear();
+  }
 
   protected readonly Array = Array;
 }

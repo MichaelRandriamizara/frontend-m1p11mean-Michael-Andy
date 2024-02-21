@@ -17,5 +17,6 @@ export class MyButtonComponent {
   @Input({required: true}) icon!: string;
   @Input() color !: string;
   @Input() variant?: "ghost" | "outline";
+  @Input() disabled !: boolean;
 
 }
