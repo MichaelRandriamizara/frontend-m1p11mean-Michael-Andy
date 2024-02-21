@@ -32,6 +32,12 @@ const routes: Routes = [
           import('./views/dashboard/dashboard.module').then((m) => m.DashboardModule)
       },
       {
+        path: 'tache',
+        canActivate: [getAuthGuard(AUTH.EMPLOYEE)],
+        loadChildren: () =>
+          import('./task/task.module').then((m) => m.TaskModule)
+      },
+      {
         path: 'theme',
         loadChildren: () =>
           import('./views/theme/theme.module').then((m) => m.ThemeModule)
