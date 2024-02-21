@@ -33,6 +33,8 @@
               </td>
               <td>
                 <div class="d-flex">
+                  <app-my-button *ngIf="!isToday(item.lastCheckIn)" text="Entrée" icon="work" color="success" (click)="checkIn(item._id)" />
+                  <app-my-button [disabled]="isToday(item.lastCheckOut)" *ngIf="isToday(item.lastCheckIn)" text="Sortie" icon="work_off" color="danger" (click)="!isToday(item.lastCheckOut) ? checkOut(item._id) : undefined" />
                   <app-my-button text="Modifier" icon="edit" color="warn" (click)="edit(item._id)" />
                   <app-my-button text="Supprimer" icon="delete" color="danger" (click)="delete(item._id)" />
                 </div>
