@@ -5,15 +5,17 @@ import { TaskRoutingModule } from './task-routing.module';
 import {TaskComponent} from "./task.component";
 import {AddTaskComponent} from "./add-task/add-task.component";
 import {
-  CardBodyComponent,
-  CardComponent,
-  CardHeaderComponent,
-  FormControlDirective,
-  RowComponent, TableDirective
+    ButtonDirective,
+    CardBodyComponent,
+    CardComponent,
+    CardHeaderComponent,
+    FormControlDirective, FormDirective,
+    RowComponent, TableDirective
 } from "@coreui/angular";
 import {MyButtonComponent} from "../my-button/my-button.component";
 import {NgxPaginationModule} from "ngx-pagination";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {NgSelectModule} from "@ng-select/ng-select";
 
 
 @NgModule({
@@ -29,7 +31,11 @@ import {ReactiveFormsModule} from "@angular/forms";
     NgxPaginationModule,
     ReactiveFormsModule,
     RowComponent,
-    TableDirective
+    TableDirective,
+    ButtonDirective,
+    FormDirective,
+    FormsModule,
+    NgSelectModule
   ]
 })
 export class TaskModule { }
