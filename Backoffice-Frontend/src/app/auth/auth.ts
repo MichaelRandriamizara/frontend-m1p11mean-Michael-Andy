@@ -1,7 +1,7 @@
 export const AUTH = {
   EMPLOYEE: {
     value: 0,
-    landingPage: ["/dashboard"]
+    landingPage: ["/tache"]
   },
   ADMIN: {
     value: 10,

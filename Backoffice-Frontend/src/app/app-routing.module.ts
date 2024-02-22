@@ -27,7 +27,7 @@ const routes: Routes = [
     children: [
       {
         path: 'dashboard',
-        canActivate: [getAuthGuard(AUTH.EMPLOYEE)],
+        canActivate: [getAuthGuard(AUTH.ADMIN)],
         loadChildren: () =>
           import('./views/dashboard/dashboard.module').then((m) => m.DashboardModule)
       },

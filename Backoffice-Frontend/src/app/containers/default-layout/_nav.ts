@@ -9,7 +9,7 @@ export const navItems: CustomNavData[] = [
   {
     name: 'Tableau de bord',
     url: '/dashboard',
-    auth: AUTH.EMPLOYEE.value,
+    auth: AUTH.ADMIN.value,
     iconComponent: { name: 'cil-speedometer' },
   },
   {
