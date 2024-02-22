@@ -26,11 +26,26 @@ export class ProfilTaskComponent implements OnInit{
   getTaskTotalPrice(task:any) {
     let totalPrices = 0;
     task.services.forEach((service: { service: { price: number; }; promotion: number; })  => {
-      console.log(service);
       const promotionPrice = service.service.price * (1 - service.promotion / 100); // Appliquer la promotion en pourcentage
       totalPrices += promotionPrice;
     });
     return totalPrices;
+  }
+
+  changeStatus(status: number) {
+    this.taskService.updateStatus(this.id, status, () => {
+      this.taskService.get(this.id, data => {
+        this.task = data;
+      });
+    });
+  }
+
+  pay() {
+    this.taskService.pay(this.totalPrices,this.id, () => {
+      this.taskService.get(this.id, data => {
+        this.task = data;
+      });
+    });
   }
 
   protected readonly formatDateTime = formatDateTime;

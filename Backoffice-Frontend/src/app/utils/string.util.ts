@@ -39,11 +39,11 @@ export function getStatus(status: number): string {
   switch (status) {
     case 0:
       return 'Créé';
-    case 1:
+    case 10:
       return 'En cours';
-    case 2:
+    case 20:
       return 'Terminé';
-    case 3:
+    case 30:
       return 'Payé';
     case -1:
       return 'Annulé';

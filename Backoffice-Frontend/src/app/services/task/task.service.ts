@@ -58,4 +58,22 @@ export class TaskService {
       }));
     })
   }
+
+  updateStatus(id: string, status: number, next: (res: any) => void) {
+    startApiCall(close => {
+      this.http.put(TASK_API + id + '/status', {status}, this.httpOptions).subscribe(ObserverObject(res => {
+        close();
+        next(res);
+      }));
+    })
+  }
+
+  pay(totalPrice:number, id: string, next: (res: any) => void) {
+    startApiCall(close => {
+      this.http.put(TASK_API + id + '/payment', {totalPrice}, this.httpOptions).subscribe(ObserverObject(res => {
+        close();
+        next(res);
+      }));
+    })
+  }
 }

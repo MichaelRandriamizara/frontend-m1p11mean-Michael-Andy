@@ -11,7 +11,14 @@
         <p><b>Date:</b> {{formatDateTime(task.date)}}</p>
         <p><b>Status:</b> {{getStatus(task.status)}}</p>
         <p><b>Prix total:</b> {{totalPrices}}</p>
+        <p><b>Payé:</b> {{task.paid ? 'Oui' : 'Non'}}</p>
       </div>
+
+    </div>
+    <div class="button-container">
+      <button *ngIf="task.status === 0" class="btn btn-danger" (click)="changeStatus(-1)">Annuler</button>
+      <button *ngIf="task.status === 0" class="btn btn-success" (click)="changeStatus(20)">Marquer comme fait</button>
+      <button *ngIf="task.paid !== true && task.status!==-1" class="btn btn-primary" (click)="pay()">Marquer comme payé</button>
     </div>
     <div class="mat-elevation-z2 table-responsive mb-4">
       <table cTable>
