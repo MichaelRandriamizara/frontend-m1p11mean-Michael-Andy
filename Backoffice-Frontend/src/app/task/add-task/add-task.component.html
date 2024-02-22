@@ -1,1 +1,32 @@
-<p>add-task works!</p>
+<c-card>
+  <c-card-header>
+    <h3>Ajout tache</h3>
+  </c-card-header>
+  <c-card-body>
+    <form cForm name="form" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()">
+      <div class="mb-3">
+        <label for="date" class="form-label">Date</label>
+        <input cInput type="datetime-local" class="form-control" id="date" name="start" required [(ngModel)]="form.start"><br/>
+        <label for="service" class="form-label">Service</label>
+        <ng-select [items]="services"
+                   bindLabel="name"
+                   bindValue="id"
+                   [multiple]="true"
+                   groupBy="Service"
+                   [selectableGroup]="false"
+                   (change)="onMaterialGroupChange($event)"
+                   placeholder="Service"
+                   id="service"
+                   >
+
+
+        </ng-select>
+      </div>
+
+      <!--      button-->
+      <div class="mb-3">
+        <button cButton type="submit" [disabled]="f.form.invalid">Ajouter</button>
+      </div>
+    </form>
+  </c-card-body>
+</c-card>

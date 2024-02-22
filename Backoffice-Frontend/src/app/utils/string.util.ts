@@ -26,8 +26,13 @@ export function formatDateInput(date: string): string {
 }
 
 export function formatDateTime(date: any): string {
+  if (!date) return ''; // Handle null or undefined dates
+
+  const gmtPlus3Offset = 3 * 60 * 60 * 1000; // GMT+3 offset in milliseconds
+  const dateWithOffset = new Date(new Date(date).getTime() - gmtPlus3Offset);
+
   const datePipe = new DatePipe('en-US');
-  return datePipe.transform(date, 'dd/MM/yyyy HH:mm') || '';
+  return datePipe.transform(dateWithOffset, 'dd/MM/yyyy HH:mm') || '';
 }
 
 export function getStatus(status: number): string {
