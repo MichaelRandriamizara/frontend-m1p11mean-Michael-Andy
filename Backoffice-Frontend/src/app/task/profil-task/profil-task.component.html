@@ -1,0 +1,32 @@
+<c-card *ngIf="task">
+  <c-card-header>
+    <div class="d-flex justify-content-between">
+      <h2 class="my-auto">Details tâche</h2>
+    </div>
+  </c-card-header>
+  <c-card-body>
+    <div class="d-flex justify-content-between">
+      <div>
+        <p><b>Client:</b> {{task.user ? task.user.name : 'Utilisateur non defini'}}</p>
+        <p><b>Date:</b> {{formatDateTime(task.date)}}</p>
+        <p><b>Status:</b> {{getStatus(task.status)}}</p>
+      </div>
+    </div>
+    <div class="mat-elevation-z2 table-responsive mb-4">
+      <table cTable>
+        <thead>
+          <tr>
+            <th>Service</th>
+            <th>Prix</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let service of task.services">
+            <td>{{service.name}}</td>
+            <td>{{service.price}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </c-card-body>
+</c-card>

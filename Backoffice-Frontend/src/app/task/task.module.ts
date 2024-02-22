@@ -16,10 +16,11 @@ import {MyButtonComponent} from "../my-button/my-button.component";
 import {NgxPaginationModule} from "ngx-pagination";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgSelectModule} from "@ng-select/ng-select";
+import {ProfilTaskComponent} from "./profil-task/profil-task.component";
 
 
 @NgModule({
-  declarations: [TaskComponent,AddTaskComponent],
+  declarations: [TaskComponent,AddTaskComponent,ProfilTaskComponent],
   imports: [
     CommonModule,
     TaskRoutingModule,
