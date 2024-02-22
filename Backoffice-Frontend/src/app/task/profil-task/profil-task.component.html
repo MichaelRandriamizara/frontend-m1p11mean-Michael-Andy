@@ -18,12 +18,14 @@
           <tr>
             <th>Service</th>
             <th>Prix</th>
+            <th>Promotion</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let service of task.services">
-            <td>{{service.name}}</td>
-            <td>{{service.price}}</td>
+            <td>{{service.service?.name}}</td>
+            <td>{{service.service?.price}}</td>
+            <td>{{service?.promotion}}</td>
           </tr>
         </tbody>
       </table>
