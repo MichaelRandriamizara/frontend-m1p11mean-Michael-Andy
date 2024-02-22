@@ -47,6 +47,10 @@ export class TaskComponent implements OnInit{
     this.router.navigate(['tache/ajouter']);
   }
 
+  goToProfil(id: string){
+    this.router.navigate(['tache/profil', id]);
+  }
+
   protected readonly Array = Array;
 
 

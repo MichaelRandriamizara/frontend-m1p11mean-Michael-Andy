@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {TaskComponent} from "./task.component";
 import {AddTaskComponent} from "./add-task/add-task.component";
+import {ProfilTaskComponent} from "./profil-task/profil-task.component";
 
 const routes: Routes = [
   {
@@ -16,6 +17,13 @@ const routes: Routes = [
     component : AddTaskComponent,
     data: {
       title: 'Ajouter tâche'
+    }
+  },
+  {
+    path: 'profil/:id',
+    component : ProfilTaskComponent,
+    data: {
+      title: 'Profil tâche'
     }
   }
 ];
