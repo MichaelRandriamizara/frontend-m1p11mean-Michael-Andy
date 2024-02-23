@@ -74,6 +74,10 @@ export class EmployeeComponent {
     this.fetchList();
   }
 
+  navigateToProfil(id: string){
+    this.router.navigate(['/profil'], { queryParams: { id: id } });
+  }
+
   getSorted (title: string) {
     let keys = Object.keys(this.sorts)
     let i = keys.indexOf(title);

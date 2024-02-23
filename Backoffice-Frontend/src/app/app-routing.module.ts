@@ -38,6 +38,12 @@ const routes: Routes = [
           import('./task/task.module').then((m) => m.TaskModule)
       },
       {
+        path: 'profil',
+        canActivate: [getAuthGuard(AUTH.EMPLOYEE)],
+        loadChildren: () =>
+          import('./profil-employee/profil-employee.module').then((m) => m.ProfilEmployeeModule)
+      },
+      {
         path: 'theme',
         loadChildren: () =>
           import('./views/theme/theme.module').then((m) => m.ThemeModule)
