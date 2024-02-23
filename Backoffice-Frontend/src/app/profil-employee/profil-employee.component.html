@@ -1,0 +1,27 @@
+<section class="section">
+  <div class="container">
+    <div class="card card-profile shadow mt--300">
+      <div class="px-4">
+        <div class="row justify-content-center">
+          <div class="card-profile-image text-center">
+            <div class="round-image-container mx-auto"> <!-- Added mx-auto here -->
+              <img src="{{employee?.photo}}" class="round-image img-center img-fluid shadow shadow-lg--hover" style="width: 200px;">
+            </div>
+          </div>
+        </div>
+        <div class="text-center mt-5">
+          <h3>{{employee?.name}}</h3>
+          <div class="h6 font-weight-300">Contact : {{employee.phone}}</div>
+          <div class="h6 mt-4">Adresse mail: {{employee.email}}</div>
+        </div>
+        <div class="mt-5 py-5 border-top text-center">
+          <div class="row justify-content-center">
+            <div class="col-lg-9">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

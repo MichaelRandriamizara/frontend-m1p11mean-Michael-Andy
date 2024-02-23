@@ -1,0 +1,45 @@
+
+.round-image-container {
+  width: 200px; /* Set your desired width */
+  height: 200px; /* Set your desired height */
+  overflow: hidden;
+  border-radius: 50%; /* Make it round */
+}
+.round-image {
+  width: 100%; /* Ensure the image fills the container */
+  height: 100%; /* Ensure the image fills the container */
+  object-fit: cover; /* Cut the image if it's too big and maintain aspect ratio */
+  border-radius: 50%; /* Keep it round */
+}
+
+.card-profile{
+  margin-top: 50px;
+  margin-bottom: 50px;
+  .card-profile-image {
+    position: relative;
+    margin-top: 50px;
+  }
+  .card-profile-stats {
+    padding: 1rem 0;
+    > div {
+      text-align: center;
+      margin-right: 1rem;
+      padding: .875rem;
+      &:last-child {
+        margin-right: 0;
+      }
+      .heading {
+        font-size: 1.1rem;
+        font-weight: bold;
+        display: block;
+      }
+      .description {
+        font-size: .875rem;
+        color: #ADB5BDFF;
+      }
+    }
+  }
+  .card-profile-actions {
+    padding: .875rem;
+  }
+}

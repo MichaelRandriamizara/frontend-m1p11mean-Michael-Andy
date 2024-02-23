@@ -114,4 +114,13 @@ export class EmployeeService {
       }))
     })
   }
+
+  getConnectedEmployee(next: (res: any) => void) {
+    startApiCall(close => {
+      this.http.get(baseUrl('api/employees/'+this.storageService.getUser().id), this.httpOptions).subscribe(ObserverObject (res => {
+        close();
+        next(res);
+      }))
+    })
+  }
 }
