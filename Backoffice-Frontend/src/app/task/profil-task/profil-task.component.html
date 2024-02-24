@@ -7,6 +7,7 @@
   <c-card-body>
     <div class="d-flex justify-content-between">
       <div>
+        <p><b>Type:</b> {{task.appointment === true ? 'Rendez-vous' : 'Tâche ponctuelle'}}</p>
         <p><b>Client:</b> {{task.user ? task.user.name : 'Utilisateur non defini'}}</p>
         <p><b>Date:</b> {{formatDateTime(task.date)}}</p>
         <p><b>Status:</b> {{getStatus(task.status)}}</p>

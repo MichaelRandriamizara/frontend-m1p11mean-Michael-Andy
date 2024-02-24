@@ -15,7 +15,7 @@ export class TaskComponent implements OnInit{
   size: number = 10;
   totalPages: number = 1;
   getters: GetterFn[] = [];
-  titles: string[] = ["Date","Client","Status"];
+  titles: string[] = ["Date","Client","Status","Type"];
   res: any = {};
 
   constructor(private taskService: TaskService, private router: Router) {
@@ -34,6 +34,7 @@ export class TaskComponent implements OnInit{
       (item: any) => formatDateTime(item.date),
       (item: any) => item?.user?.name,
       (item: any) => getStatus(item.status),
+      (item: any) => item.appointment === true ? 'Rendez-vous' : 'Tâche ponctuelle'
     ];
     this.fetchList();
   }
