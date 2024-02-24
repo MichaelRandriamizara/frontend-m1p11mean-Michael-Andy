@@ -51,3 +51,7 @@ export function getStatus(status: number): string {
       return 'Statut inconnu';
   }
 }
+
+export function formatDouble (value: number): string {
+  return value.toFixed(2);
+}

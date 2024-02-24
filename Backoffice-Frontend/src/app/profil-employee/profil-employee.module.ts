@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ProfilEmployeeRoutingModule } from './profil-employee-routing.module';
 import {ProfilEmployeeComponent} from "./profil-employee.component";
 import {CardComponent} from "@coreui/angular";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -11,7 +12,9 @@ import {CardComponent} from "@coreui/angular";
   imports: [
     CommonModule,
     ProfilEmployeeRoutingModule,
-    CardComponent
+    CardComponent,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class ProfilEmployeeModule { }

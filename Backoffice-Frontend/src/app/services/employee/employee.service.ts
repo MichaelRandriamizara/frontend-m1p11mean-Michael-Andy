@@ -123,4 +123,29 @@ export class EmployeeService {
       }))
     })
   }
+
+  getHoursOfWorker(id: string, startFilter:string, endFilter:string, next: (res: any) => void) {
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      params: new HttpParams()
+    };
+
+    if(startFilter){
+      httpOptions.params = httpOptions.params.set('start', startFilter);
+    }
+
+    if(endFilter) {
+      httpOptions.params = httpOptions.params.set('end', endFilter);
+    }
+
+    startApiCall(close => {
+      this.http.get(baseUrl('api/employeeCheckIn/') + id, httpOptions).subscribe(ObserverObject (res => {
+        close();
+        next(res);
+      }))
+    })
+  }
 }

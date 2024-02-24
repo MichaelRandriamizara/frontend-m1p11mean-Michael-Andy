@@ -11,15 +11,42 @@
         </div>
         <div class="text-center mt-5">
           <h3>{{employee?.name}}</h3>
-          <div class="h6 font-weight-300">Contact : {{employee.phone}}</div>
-          <div class="h6 mt-4">Adresse mail: {{employee.email}}</div>
+          <div class="h6 font-weight-300">Contact : {{employee?.phone}}</div>
+          <div class="h6 mt-4">Adresse mail: {{employee?.email}}</div>
         </div>
         <div class="mt-5 py-5 border-top text-center">
           <div class="row justify-content-center">
             <div class="col-lg-9">
-
+              <h3>Horaire de travail</h3>
             </div>
           </div>
+        </div>
+          <p *ngIf="latestHoursOfWorker!=null">Heure de travail en moyenne 30 derniers jours: {{formatDouble(latestHoursOfWorker)}} heures</p>
+          <p *ngIf="latestHoursOfWorker==null">Pas d'heure de travail enregistré</p>
+          <div class="row">
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="start">Date de début</label>
+                <input type="date" class="form-control" [(ngModel)]="form.start" id="start" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group
+              ">
+                <label for="end">Date de fin</label>
+                <input type="date" class="form-control" [(ngModel)]="form.end" id="end" required>
+              </div>
+            </div>
+            <div class="pt-2">
+            <input type="button" (click)="filterHours()" class="btn btn-primary" value="Filter">
+            </div>
+          </div>
+
+        <div>
+          <p>Debut : {{beginFilter}}</p>
+          <p>Fin : {{endFilter}}</p>
+          <p *ngIf="hourOfWork">Heure de travail : {{formatDouble(hourOfWork)}}</p>
         </div>
       </div>
     </div>
