@@ -60,7 +60,7 @@ export class ProfilEmployeeComponent implements OnInit{
       for(let i=0; i<data.length; i++){
         duration += data[i].duration;
       }
-      this.latestHoursOfWorker = duration/data.length;
+      this.latestHoursOfWorker = duration;
     });
   }
 
@@ -76,7 +76,7 @@ export class ProfilEmployeeComponent implements OnInit{
       for(let i=0; i<data.length; i++){
         duration += data[i].duration;
       }
-      this.hourOfWork = duration/data.length;
+      this.hourOfWork = duration;
     });
 
   }
