@@ -31,64 +31,17 @@
     <c-row>
       <c-col sm="5">
         <h4 class="card-title mb-0" id="traffic">Chiffre d'affaire par mois</h4>
-        <div class="small text-medium-emphasis">Janvier - Decembre "date"</div>
+        <div class="small text-medium-emphasis">Janvier - Decembre {{yearStr}}</div>
       </c-col>
       <c-col class="d-none d-md-block" sm="7">
-        <form [formGroup]="trafficRadioGroup">
-          <c-button-group class="float-end me-3" role="group">
-            <input
-              class="btn-check"
-              formControlName="trafficRadio"
-              type="radio"
-              value="Day"
-            />
-            <label
-              (click)="setTrafficPeriod('Day')"
-              cButton
-              cFormCheckLabel
-              color="secondary"
-              variant="outline"
-            >Day</label>
-
-            <input
-              class="btn-check"
-              formControlName="trafficRadio"
-              type="radio"
-              value="Month"
-            />
-            <label
-              (click)="setTrafficPeriod('Month')"
-              cButton
-              cFormCheckLabel
-              color="secondary"
-              variant="outline"
-            >Month</label>
-
-            <input
-              class="btn-check"
-              formControlName="trafficRadio"
-              type="radio"
-              value="Year"
-            />
-            <label
-              (click)="setTrafficPeriod('Year')"
-              cButton
-              cFormCheckLabel
-              color="secondary"
-              variant="outline"
-            >Year</label>
-          </c-button-group>
-        </form>
+        <input type="number" class="form-control" placeholder="Annee" [(ngModel)]="year" >
+        <button type="button" class="btn btn-secondary" (click)="filterPerYear()">Rechercher</button>
       </c-col>
     </c-row>
     <c-chart
-      [data]="mainChart.data"
-      [height]="300"
-      [ngStyle]="{ 'marginTop.px': 40 }"
-      [options]="mainChart.options"
-      [type]="mainChart.type"
-    >
-      Main chart
+      [data]="chartData"
+      type="line"
+      (chartRef)="handleChartRef($event)">
     </c-chart>
   </c-card-body>
 </c-card>

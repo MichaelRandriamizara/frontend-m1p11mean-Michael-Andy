@@ -40,4 +40,24 @@ export class StatService {
       }));
     })
   }
+
+  getTurnoverPerMonth(date:string, next: (res: any) => void) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'employeeid': this.storageService.getUser().id,
+      }),
+      params: new HttpParams()
+    };
+
+    if(date){
+      httpOptions.params = httpOptions.params.set('year', date);
+    }
+    startApiCall(close => {
+      this.http.get(STAT_API + 'turnover/month', httpOptions).subscribe(ObserverObject(res => {
+        close();
+        next(res);
+      }));
+    })
+  }
 }
