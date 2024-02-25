@@ -34,4 +34,10 @@ export class ServiceService {
             next();
         });
     }
+
+    findCurrentOffers(next: (res: any) => void) {
+        this.http.get(baseUrl('api/specialServices/currents')).subscribe(res => {
+            next(res);
+        });
+    }
 }
