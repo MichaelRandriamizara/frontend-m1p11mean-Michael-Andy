@@ -63,9 +63,18 @@ export class DashboardComponent implements OnInit {
     return turnover;
   }
 
-  initChart(data:any[]){
+    getBenefits(data:any[]){
+        let turnover = new Array();
+        for(let i=0; i<data.length; i++){
+            turnover.push(data[i].benefits);
+        }
+        return turnover;
+    }
+
+
+    initChart(data:any[]){
     this.chartData = {
-      labels: this.getMonth(data),
+      labels: this.getMonth(data[0]),
       datasets: [
         {
           label: 'Chiffre d\'affaire',
@@ -73,7 +82,15 @@ export class DashboardComponent implements OnInit {
           borderColor: 'rgba(220,220,220,1)',
           pointBackgroundColor: 'rgba(220,220,220,1)',
           pointBorderColor: '#fff',
-          data: this.getTurnovers(data)
+          data: this.getTurnovers(data[0])
+        },
+        {
+          label: 'Bénéfices',
+          backgroundColor: 'rgba(151,187,205,0.2)',
+          borderColor: 'rgba(151,187,205,1)',
+          pointBackgroundColor: 'rgba(151,187,205,1)',
+          pointBorderColor: '#fff',
+          data: this.getBenefits(data[1])
         }
       ]
     };
@@ -86,9 +103,14 @@ export class DashboardComponent implements OnInit {
 
   getTurnoverPerYear(year:string){
     this.yearStr = year;
+    const dataArray = new Array();
     this.statService.getTurnoverPerMonth(year, data => {
-      this.initChart(data.data);
+      dataArray.push(data.data);
     });
+    this.statService.getBenefitsPerMonth(year, data => {
+      dataArray.push(data.data);
+      this.initChart(dataArray);
+    })
   }
 
   filterPerYear(){
