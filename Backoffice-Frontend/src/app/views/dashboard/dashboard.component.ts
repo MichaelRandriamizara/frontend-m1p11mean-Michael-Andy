@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 import { DashboardChartsData, IChartProps } from './dashboard-charts-data';
+import {StatService} from "../../services/stat/stat.service";
+import {formatDateInput} from "../../utils/string.util";
 
 interface IUser {
   name: string;
@@ -22,7 +24,10 @@ interface IUser {
   styleUrls: ['dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  constructor(private chartsData: DashboardChartsData) {
+  todayTurnover: number = 0;
+  turnOverTitle: string = "";
+  now = formatDateInput(new Date()+"");
+  constructor(private chartsData: DashboardChartsData, private statService:StatService) {
   }
 
   public users: IUser[] = [
@@ -113,6 +118,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.initCharts();
+    this.getTurnover("");
   }
 
   initCharts(): void {
@@ -124,4 +130,28 @@ export class DashboardComponent implements OnInit {
     this.chartsData.initMainChart(value);
     this.initCharts();
   }
+
+  getTurnover(date:string){
+    if(date===""){
+      const dateNow = new Date();
+      const dateStr = formatDateInput(dateNow+"");
+      this.statService.getTurnoverPerDay(dateStr, data => {
+        console.log(data);
+        this.turnOverTitle = "Chiffre d'affaire du "+dateStr;
+        this.todayTurnover = data.data;
+      });
+    }else{
+      this.statService.getTurnoverPerDay(date, data => {
+        this.turnOverTitle = "Chiffre d'affaire du "+date;
+        this.todayTurnover = data.data;
+      });
+    }
+  }
+
+  filterTurnover(){
+    const date = formatDateInput(this.now);
+    this.getTurnover(date);
+  }
+
+
 }
