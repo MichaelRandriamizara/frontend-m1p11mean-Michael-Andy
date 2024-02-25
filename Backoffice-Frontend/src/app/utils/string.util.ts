@@ -25,6 +25,11 @@ export function formatDateInput(date: string): string {
   return datePipe.transform(date, 'yyyy-MM-dd') || '';
 }
 
+export function getYearFromDate(date: string): string {
+  const datePipe = new DatePipe('en-US');
+  return datePipe.transform(date, 'yyyy') || '';
+}
+
 export function formatDateTime(date: any): string {
   if (!date) return ''; // Handle null or undefined dates
 
