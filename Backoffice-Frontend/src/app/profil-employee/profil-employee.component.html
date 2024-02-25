@@ -21,7 +21,8 @@
             </div>
           </div>
         </div>
-          <p *ngIf="latestHoursOfWorker!=null">Heure de travail durant les 30 derniers jours: {{formatDouble(latestHoursOfWorker)}} heures</p>
+        <p *ngIf="dailyCommisson!=null"><b>Commission de la journee: </b>{{formatDouble(dailyCommisson)}} Ariary</p>
+        <p *ngIf="latestHoursOfWorker!=null"><b>Heure de travail durant les 30 derniers jours: </b>{{formatDouble(latestHoursOfWorker)}} heures</p>
           <p *ngIf="latestHoursOfWorker==null">Pas d'heure de travail enregistré</p>
           <div class="row">
 

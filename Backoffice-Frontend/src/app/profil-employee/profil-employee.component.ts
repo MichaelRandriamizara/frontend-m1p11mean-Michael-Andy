@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {EmployeeService} from "../services/employee/employee.service";
 import {formatDateInput, formatDouble} from "../utils/string.util";
+import {TaskService} from "../services/task/task.service";
 
 @Component({
   selector: 'app-profil-employee',
@@ -12,6 +13,7 @@ export class ProfilEmployeeComponent implements OnInit{
   id: string = "";
   employee: any ;
   latestHoursOfWorker: null | number = null;
+  dailyCommisson: null | number = null;
   hourOfWork: null | number = null;
 
   beginFilter: string = "";
@@ -32,12 +34,14 @@ export class ProfilEmployeeComponent implements OnInit{
         this.employeeService.get(employeeId, data => {
           this.id = employeeId;
           this.getLatestHoursOfWorker(employeeId);
+          this.getDailyCommisson(employeeId);
           this.employee = data;
         });
       }else{
         this.employeeService.getConnectedEmployee(data => {
           this.employee = data;
           this.id = this.employee._id;
+          this.getDailyCommisson(this.employee._id);
           this.getLatestHoursOfWorker(this.employee._id);
         })
       }
@@ -45,7 +49,7 @@ export class ProfilEmployeeComponent implements OnInit{
   }
 
 
-  constructor(private employeeService: EmployeeService, private router: Router, private route: ActivatedRoute) {
+  constructor(private employeeService: EmployeeService, private router: Router, private route: ActivatedRoute, private taskService: TaskService) {
   }
 
   getLatestHoursOfWorker(id: string) {
@@ -79,5 +83,11 @@ export class ProfilEmployeeComponent implements OnInit{
       this.hourOfWork = duration;
     });
 
+  }
+
+  getDailyCommisson(id:string) {
+    this.taskService.getDailyCommission(id, formatDateInput(new Date()+""), data => {
+      this.dailyCommisson = data.data;
+    });
   }
 }

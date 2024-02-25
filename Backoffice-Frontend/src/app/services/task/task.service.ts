@@ -76,4 +76,24 @@ export class TaskService {
       }));
     })
   }
+
+  getDailyCommission(id:string,date: string, next: (res: any) => void) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'employeeid': this.storageService.getUser().id,
+      }),
+      params: new HttpParams()
+    };
+
+    if(date){
+      httpOptions.params = httpOptions.params.set('start', date);
+    }
+    startApiCall(close => {
+      this.http.get(TASK_API + 'commission/'+id, httpOptions).subscribe(ObserverObject(res => {
+        close();
+        next(res);
+      }));
+    })
+  }
 }
