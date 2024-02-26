@@ -21,8 +21,9 @@ import {HttpClientModule} from '@angular/common/http';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import {MatDialogModule} from '@angular/material/dialog';
+import {baseUrl} from '../configurations/server.config';
 
-const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
+const config: SocketIoConfig = { url: baseUrl(''), options: {} };
 @NgModule({
   declarations: [
     AppComponent,

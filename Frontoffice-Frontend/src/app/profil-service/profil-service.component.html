@@ -1,0 +1,54 @@
+<main class="profile-page">
+    <section class="section-profile-cover section-shaped my-0">
+        <!-- Circles background -->
+        <div class="shape shape-style-1 shape-primary alpha-4">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <!-- SVG separator -->
+        <div class="container shape-container d-flex align-items-center py-lg">
+            <div class="col px-0">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-lg-6 text-center">
+                        <img src="./assets/img/logo.png" style="width: 200px;" class="img-fluid">
+                        <p class="lead text-white">Découvrez dès maintenant ce service incontournable !</p>
+                        <div class="btn-wrapper mt-5">
+                            <button class="btn btn-lg btn-white btn-icon mb-3 mb-sm-0">
+                                <span class="btn-inner--icon"><i class="fa fa-bookmark"></i></span>
+                                <span class="btn-inner--text">Prendre rendez-vous</span>
+                            </button>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section" *ngIf="service">
+        <div class="container">
+            <div class="card card-profile shadow mt-3">
+                <div class="px-4">
+                    <div class="text-center text-lg-left mt-5 mt-lg-0">
+                        <h3 class="mb-3">{{service?.name}}</h3>
+                        <div class="h6 font-weight-300"><i class="ni location_pin mr-2"></i>Prix: {{service?.price}} Ariary</div>
+                        <div class="h6 mt-4"><i class="ni business_briefcase-24 mr-2"></i>Durée: {{service?.duration}} min</div>
+                    </div>
+                </div>
+                <div class="row" style="padding: 50px">
+                    <div class="col-lg-4 mb-4" *ngFor="let photo of service.photos">
+                        <div class="thumbnail zoom-effect" style="cursor: pointer">
+                            <img [src]="photo" class="img-fluid" alt="Service Image" (click)="openImageModal(photo, service.name)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</main>
