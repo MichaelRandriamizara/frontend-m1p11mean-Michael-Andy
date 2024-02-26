@@ -17,6 +17,7 @@ const routes: Routes = [
     { path: 'landing',          component: LandingComponent },
     { path: 'login',          component: LoginComponent },
     { path: 'team', component: OurTeamComponent},
+    { path: 'appointment', loadChildren: () => import('./appointment/appointment.module').then(m => m.AppointmentModule) },
     { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 

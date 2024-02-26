@@ -21,6 +21,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import {MatDialogModule} from '@angular/material/dialog';
+import {AppointmentService} from './services/appointment/appointment.service';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 @NgModule({
@@ -47,7 +48,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
   ],
   providers: [
       AuthService,
-      StorageService
+      StorageService,
+      AppointmentService
   ],
   bootstrap: [AppComponent]
 })
