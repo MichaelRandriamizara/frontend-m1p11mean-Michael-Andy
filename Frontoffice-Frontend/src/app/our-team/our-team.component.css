@@ -19,3 +19,7 @@ ngb-rating {
     object-fit: cover; /* Cut the image if it's too big and maintain aspect ratio */
     border-radius: 50%; /* Keep it round */
 }
+.zoom-effect:hover {
+    transform: scale(1.05); /* Adjust the scale value as needed */
+    transition: transform 0.3s ease; /* Adjust the transition duration and timing function as needed */
+}
