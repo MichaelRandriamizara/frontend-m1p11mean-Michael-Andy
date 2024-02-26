@@ -100,4 +100,44 @@ export class StatService {
       }));
     })
   }
+
+  getTaskPerMonth(date:string, next: (res: any) => void) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'employeeid': this.storageService.getUser().id,
+      }),
+      params: new HttpParams()
+    };
+
+    if(date){
+      httpOptions.params = httpOptions.params.set('year', date);
+    }
+    startApiCall(close => {
+      this.http.get(STAT_API + 'task/month', httpOptions).subscribe(ObserverObject(res => {
+        close();
+        next(res);
+      }));
+    })
+  }
+
+  getTaskPerDay(date:string, next: (res: any) => void) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'employeeid': this.storageService.getUser().id,
+      }),
+      params: new HttpParams()
+    };
+
+    if(date){
+      httpOptions.params = httpOptions.params.set('start', date);
+    }
+    startApiCall(close => {
+      this.http.get(STAT_API + 'task/day', httpOptions).subscribe(ObserverObject(res => {
+        close();
+        next(res);
+      }));
+    })
+  }
 }

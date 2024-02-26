@@ -22,6 +22,29 @@
     </c-widget-stat-a>
   </c-col>
 
+  <c-col md="12" xl="6" >
+    <c-row class="pb-1" style="opacity: 0">
+      <c-col md="6">
+        <input type="date" class="form-control" placeholder="" [(ngModel)]="now" />
+      </c-col>
+      <c-col md="6">
+        <button class="btn btn-secondary" (click)="filterTurnover()">Rechercher</button>
+      </c-col>
+    </c-row>
+    <c-widget-stat-a
+      class="mb-4"
+      color="primary"
+      title="{{taskAppointmentTitle}}"
+    >
+      <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
+        Reservation: {{todayTaskAppointment}}<br/>
+        Demande sur place: {{todayTaskNonAppointment}}
+      </ng-template>
+      <ng-template cTemplateId="widgetActionTemplate">
+      </ng-template>
+    </c-widget-stat-a>
+  </c-col>
+
 </c-row>
 
 
@@ -40,6 +63,26 @@
     </c-row>
     <c-chart
       [data]="chartData"
+      type="line"
+      (chartRef)="handleChartRef($event)">
+    </c-chart>
+  </c-card-body>
+</c-card>
+
+<c-card class="mb-4">
+  <c-card-body>
+    <c-row>
+      <c-col sm="5">
+        <h4 class="card-title mb-0" id="traffic2">Nombre de tâches par mois</h4>
+        <div class="small text-medium-emphasis">Janvier - Decembre {{yearStr2}}</div>
+      </c-col>
+      <c-col class="d-none d-md-block" sm="7">
+        <input type="number" class="form-control" placeholder="Annee" [(ngModel)]="year2" >
+        <button type="button" class="btn btn-secondary" (click)="filterAppointmentPerYear()">Rechercher</button>
+      </c-col>
+    </c-row>
+    <c-chart
+      [data]="chartData2"
       type="line"
       (chartRef)="handleChartRef($event)">
     </c-chart>
