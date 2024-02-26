@@ -63,6 +63,14 @@ export class DashboardComponent implements OnInit {
     return turnover;
   }
 
+  getExpenses(data:any[]){
+    let expense = new Array();
+    for(let i=0; i<data.length; i++){
+      expense.push(data[i].expenses);
+    }
+    return expense;
+  }
+
     getBenefits(data:any[]){
         let turnover = new Array();
         for(let i=0; i<data.length; i++){
@@ -73,27 +81,35 @@ export class DashboardComponent implements OnInit {
 
 
     initChart(data:any[]){
-    this.chartData = {
-      labels: this.getMonth(data[0]),
-      datasets: [
-        {
-          label: 'Chiffre d\'affaire',
-          backgroundColor: 'rgba(220,220,220,0.2)',
-          borderColor: 'rgba(220,220,220,1)',
-          pointBackgroundColor: 'rgba(220,220,220,1)',
-          pointBorderColor: '#fff',
-          data: this.getTurnovers(data[0])
-        },
-        {
-          label: 'Bénéfices',
-          backgroundColor: 'rgba(151,187,205,0.2)',
-          borderColor: 'rgba(151,187,205,1)',
-          pointBackgroundColor: 'rgba(151,187,205,1)',
-          pointBorderColor: '#fff',
-          data: this.getBenefits(data[1])
-        }
-      ]
-    };
+      this.chartData = {
+        labels: this.getMonth(data[0]),
+        datasets: [
+          {
+            label: 'Chiffre d\'affaire',
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 2, // Épaisseur de la ligne
+            lineTension: 0.4, // Courbure de la ligne
+            data: this.getTurnovers(data[0])
+          },
+          {
+            label: 'Dépenses',
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 2, // Épaisseur de la ligne
+            lineTension: 0.4, // Courbure de la ligne
+            data: this.getExpenses(data[1])
+          },
+          {
+            label: 'Bénéfices',
+            backgroundColor: 'rgba(255, 206, 86, 0.2)',
+            borderColor: 'rgba(255, 206, 86, 1)',
+            borderWidth: 2, // Épaisseur de la ligne
+            lineTension: 0.4, // Courbure de la ligne
+            data: this.getBenefits(data[2])
+          }
+        ]
+      };
 
   }
 
@@ -105,6 +121,9 @@ export class DashboardComponent implements OnInit {
     this.yearStr = year;
     const dataArray = new Array();
     this.statService.getTurnoverPerMonth(year, data => {
+      dataArray.push(data.data);
+    });
+    this.statService.getExpensesPerMonth(year, data => {
       dataArray.push(data.data);
     });
     this.statService.getBenefitsPerMonth(year, data => {
