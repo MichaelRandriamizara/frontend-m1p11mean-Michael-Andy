@@ -140,4 +140,27 @@ export class StatService {
       }));
     })
   }
+
+  getEmployeeHours(startFilter:string, endFilter:string, next: (res: any) => void) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'employeeid': this.storageService.getUser().id,
+      }),
+      params: new HttpParams()
+    };
+
+    if(startFilter){
+      httpOptions.params = httpOptions.params.set('start', startFilter);
+    }
+    if(endFilter){
+      httpOptions.params = httpOptions.params.set('end', endFilter);
+    }
+    startApiCall(close => {
+      this.http.get(STAT_API + 'employee/nbhour', httpOptions).subscribe(ObserverObject(res => {
+        close();
+        next(res);
+      }));
+    })
+  }
 }
