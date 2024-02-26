@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {StatService} from "../../services/stat/stat.service";
-import {formatDateInput, getYearFromDate} from "../../utils/string.util";
+import {formatDateInput, formatDouble, getYearFromDate} from "../../utils/string.util";
 
 
 @Component({
@@ -15,23 +15,50 @@ export class DashboardComponent implements OnInit {
   taskAppointmentTitle: string = "";
   todayTaskAppointment: number = 0;
   todayTaskNonAppointment: number = 0;
+  employees: any[] = [];
   year: string = getYearFromDate(new Date()+"");
   yearStr: string = getYearFromDate(new Date()+"");
   year2: string = getYearFromDate(new Date()+"");
   yearStr2: string = getYearFromDate(new Date()+"");
   now = formatDateInput(new Date()+"");
+  startDate = "";
+  endDate = formatDateInput(new Date()+"");
   constructor(private statService:StatService) {
   }
 
 
 
   ngOnInit(): void {
+    const dateNow = new Date();
+    const dataminus30 = new Date();
+    dataminus30.setDate(dataminus30.getDate() - 30);
+    this.startDate = formatDateInput(dataminus30 + "");
     this.getTurnover("");
     this.getTaskAppointment("");
     this.getTurnoverPerYear(this.year);
     this.getTaskPerYear(this.year2);
+    this.getEmployees(this.startDate, this.endDate);
   }
 
+  filterEmployeeHour(){
+    this.getEmployees(this.startDate, this.endDate);
+  }
+
+  getEmployees(startDate:string, endDate:string){
+    if(startDate===""){
+      //date now minus 30 days
+      const dataminus30 = new Date();
+      dataminus30.setDate(dataminus30.getDate() - 30);
+      startDate = formatDateInput(dataminus30 + "");
+    }
+    if(endDate===""){
+      const dateNow = new Date();
+      endDate = formatDateInput(dateNow+"");
+    }
+    this.statService.getEmployeeHours(startDate, endDate, data => {
+      this.employees = data.data;
+    });
+  }
 
   getTurnover(date:string){
     if(date===""){
@@ -219,4 +246,5 @@ export class DashboardComponent implements OnInit {
   }
 
 
+  protected readonly formatDouble = formatDouble;
 }
