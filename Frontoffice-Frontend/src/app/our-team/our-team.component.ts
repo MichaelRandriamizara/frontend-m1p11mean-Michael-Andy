@@ -59,4 +59,11 @@ export class OurTeamComponent implements OnInit {
     }
   }
 
+  navigateToEmployee(id: string) {
+    this.router.navigate(['/profil-employee/' + id]);
+  }
+  navigateToService(id: string) {
+    this.router.navigate(['/profil-service/' + id]);
+  }
+
 }

@@ -21,6 +21,8 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 
 import { WidgetsModule } from '../widgets/widgets.module';
+import {MyButtonComponent} from "../../my-button/my-button.component";
+import {NgxPaginationModule} from "ngx-pagination";
 
 @NgModule({
   imports: [
@@ -43,7 +45,9 @@ import { WidgetsModule } from '../widgets/widgets.module';
     WidgetsModule,
     WidgetStatAComponent,
     TemplateIdDirective,
-    FormsModule
+    FormsModule,
+    MyButtonComponent,
+    NgxPaginationModule
   ],
   declarations: [DashboardComponent]
 })

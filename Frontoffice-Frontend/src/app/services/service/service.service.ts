@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {baseUrl} from '../../../configurations/server.config';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {startApiCall} from '../../utils/sweet-alert.utils';
 
 
 const SERVICE_API = baseUrl('api/services/');
@@ -39,5 +40,14 @@ export class ServiceService {
         this.http.get(baseUrl('api/specialServices/currents')).subscribe(res => {
             next(res);
         });
+    }
+
+    getService(id: string, next: (res: any) => void) {
+      startApiCall(close => {
+          this.http.get(SERVICE_API + id).subscribe(res => {
+          next(res);
+          close();
+        });
+      });
     }
 }

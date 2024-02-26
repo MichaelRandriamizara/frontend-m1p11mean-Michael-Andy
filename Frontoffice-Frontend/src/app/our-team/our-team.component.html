@@ -34,22 +34,21 @@
                         <p class="lead text-muted">Notre équipe dévouée de professionnels de la beauté est là pour vous offrir une expérience exceptionnelle à chaque visite. Avec une passion partagée pour l'art de la beauté et un engagement envers l'excellence, chacun de nos employés apporte son talent unique et son expertise pour vous offrir des résultats époustouflants. Que ce soit pour une coupe de cheveux, une manucure parfaite ou un traitement de spa relaxant, faites confiance à notre équipe pour vous offrir un service personnalisé et attentionné à chaque fois. Nous sommes impatients de vous aider à révéler votre beauté intérieure et extérieure!.</p>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" *ngIf="employees.length>0">
                     <ng-container *ngFor="let employee of employees">
                         <div class="col-md-6 col-lg-3 mb-5 mb-lg-0">
                             <div class="px-4">
-                                <div class="round-image-container">
+                                <div class="round-image-container zoom-effect" style="cursor: pointer;" (click)="navigateToEmployee(employee?._id)">
                                     <img src="{{employee?.photo}}" class="round-image img-center img-fluid shadow shadow-lg--hover" style="width: 200px;">
-<!--                                <img src="./assets/img/theme/team-1-800x800.jpg" class="rounded-circle img-center img-fluid shadow shadow-lg&#45;&#45;hover" style="width: 200px;">-->
                                 </div>
                                 <div class="pt-4 text-center">
-                                    <h5 class="title">
-                                        <span class="d-block mb-1">{{employee.name}}</span>
+                                    <h5 class="title zoom-effect" style="cursor: pointer;" (click)="navigateToEmployee(employee?._id)">
+                                        <span class="d-block mb-1">{{employee?.name}}</span>
                                         <small class="h6 text-muted">{{employee?.role?.name}}</small>
                                     </h5>
                                     <div>
                                         <ngb-rating [max]="5" [(rate)]="employee.rating" (rateChange)="updateRating(employee)" [readonly]="false"></ngb-rating>
-                                        <p>Votre note: {{employee.rating}}</p>
+                                        <p>Votre note: {{employee?.rating}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -67,21 +66,21 @@
                         <p class="lead text-muted">Découvrez une gamme complète de services de beauté conçus pour vous faire rayonner. Des coupes de cheveux élégantes aux soins du visage rajeunissants, notre équipe talentueuse est là pour répondre à tous vos besoins. Explorez nos services et laissez-nous vous aider à atteindre vos objectifs de beauté et de bien-être. Prenez rendez-vous aujourd'hui et laissez-nous vous chouchouter!</p>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" *ngIf="services.length>0">
                     <ng-container *ngFor="let service of services">
                         <div class="col-md-6 col-lg-3 mb-5 mb-lg-0">
                             <div class="px-4">
-                                <div class="round-image-container">
+                                <div class="round-image-container zoom-effect" style="cursor: pointer" (click)="navigateToService(service?._id)">
                                     <img src="{{service?.photos[0]}}" class="round-image img-center img-fluid shadow shadow-lg--hover" style="width: 200px;">
                                     <!--                                <img src="./assets/img/theme/team-1-800x800.jpg" class="rounded-circle img-center img-fluid shadow shadow-lg&#45;&#45;hover" style="width: 200px;">-->
                                 </div>
                                 <div class="pt-4 text-center">
-                                    <h5 class="title">
-                                        <span class="d-block mb-1">{{service.name}}</span>
+                                    <h5 class="title zoom-effect" style="cursor: pointer" (click)="navigateToService(service?._id)">
+                                        <span class="d-block mb-1">{{service?.name}}</span>
                                     </h5>
                                     <div>
                                         <ngb-rating [max]="5" [(rate)]="service.rating" (rateChange)="updateServiceRating(service)" [readonly]="false"></ngb-rating>
-                                        <p>Votre note: {{service.rating}}</p>
+                                        <p>Votre note: {{service?.rating}}</p>
                                     </div>
                                 </div>
                             </div>

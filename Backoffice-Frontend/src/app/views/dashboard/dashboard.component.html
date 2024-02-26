@@ -22,6 +22,29 @@
     </c-widget-stat-a>
   </c-col>
 
+  <c-col md="12" xl="6" >
+    <c-row class="pb-1" style="opacity: 0">
+      <c-col md="6">
+        <input type="date" class="form-control" placeholder="" [(ngModel)]="now" />
+      </c-col>
+      <c-col md="6">
+        <button class="btn btn-secondary" (click)="filterTurnover()">Rechercher</button>
+      </c-col>
+    </c-row>
+    <c-widget-stat-a
+      class="mb-4"
+      color="primary"
+      title="{{taskAppointmentTitle}}"
+    >
+      <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
+        Reservation: {{todayTaskAppointment}}<br/>
+        Demande sur place: {{todayTaskNonAppointment}}
+      </ng-template>
+      <ng-template cTemplateId="widgetActionTemplate">
+      </ng-template>
+    </c-widget-stat-a>
+  </c-col>
+
 </c-row>
 
 
@@ -45,3 +68,76 @@
     </c-chart>
   </c-card-body>
 </c-card>
+
+<c-card class="mb-4">
+  <c-card-body>
+    <c-row>
+      <c-col sm="5">
+        <h4 class="card-title mb-0" id="traffic2">Nombre de tâches par mois</h4>
+        <div class="small text-medium-emphasis">Janvier - Decembre {{yearStr2}}</div>
+      </c-col>
+      <c-col class="d-none d-md-block" sm="7">
+        <input type="number" class="form-control" placeholder="Annee" [(ngModel)]="year2" >
+        <button type="button" class="btn btn-secondary" (click)="filterAppointmentPerYear()">Rechercher</button>
+      </c-col>
+    </c-row>
+    <c-chart
+      [data]="chartData2"
+      type="line"
+      (chartRef)="handleChartRef($event)">
+    </c-chart>
+  </c-card-body>
+</c-card>
+
+<c-card>
+  <c-card-header>
+    <h3>Heure de travail des employés</h3>
+  </c-card-header>
+  <c-card-body>
+    <div class="d-flex align-items-center">
+      <div class="p-2">
+        <label for="startDate">Date debut</label>
+        <input cFormControl type="date" id="startDate" [(ngModel)]="startDate">
+      </div>
+      <div class="p-2">
+        <label for="startDate">Date fin</label>
+        <input cFormControl type="date" id="endDate" [(ngModel)]="endDate">
+      </div>
+      <div class="p-2">
+        <button class="btn btn-primary" (click)="filterEmployeeHour()">Rechercher</button>
+      </div>
+    </div>
+    <c-row style="padding-top: 16px;">
+      <div
+        class="mat-elevation-z2 table-responsive mb-4"
+      >
+        <table cTable>
+          <thead>
+          <tr>
+            <th scope="col">
+              Employe
+            </th>
+            <th scope="col">
+              Nombres d'heures de travail
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of employees">
+              <td>
+                {{item.employee.name}}
+              </td>
+              <td>
+                {{formatDouble(item.nbHours)}} heures
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </c-row>
+    <div>
+      <ng-content />
+    </div>
+  </c-card-body>
+</c-card>
+
