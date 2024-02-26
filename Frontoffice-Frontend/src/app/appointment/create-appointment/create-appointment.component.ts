@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ServiceService} from '../../services/service/service.service';
 
 @Component({
   selector: 'app-create-appointment',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateAppointmentComponent implements OnInit {
 
-  constructor() { }
+  constructor(private serviceService: ServiceService) { }
+
+  services: any;
+  form: any = {
+    employee: null,
+    services: [],
+    start: null,
+    end: null
+  };
 
   ngOnInit(): void {
+    this.serviceService.getAll(true, data => {
+      this.services = data;
+    });
   }
 
 }

@@ -3,6 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {ServiceService} from '../services/service/service.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ImageModalComponent} from '../image-modal/image-modal.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profil-service',
@@ -13,7 +14,7 @@ export class ProfilServiceComponent implements OnInit {
   id: any;
   service: any = null;
 
-  constructor(private serviceService: ServiceService, private router: ActivatedRoute, private modalService: NgbModal) { }
+  constructor(private serviceService: ServiceService, private router: ActivatedRoute, private modalService: NgbModal, private Router: Router) { }
 
   ngOnInit(): void {
     this.id = this.router.snapshot.paramMap.get('id');
@@ -26,5 +27,9 @@ export class ProfilServiceComponent implements OnInit {
     const modalRef = this.modalService.open(ImageModalComponent, { centered: true });
     modalRef.componentInstance.photo = photo;
     modalRef.componentInstance.name = name;
+  }
+
+  navigateToCreateAppointment() {
+    this.Router.navigate(['/appointment/create']);
   }
 }
