@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {baseUrl} from '../../../configurations/server.config';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {startApiCall} from '../../utils/sweet-alert.utils';
 
 const EMPLOYEE_API = baseUrl('api/employees/');
 
@@ -33,6 +34,14 @@ export class EmployeeService {
     console.log(rating);
     this.http.post(baseUrl('api/employeeRatings/'), rating, httpOptions).subscribe(res => {
       next();
+    });
+  }
+  getEmployee(id: string, next: (res: any) => void) {
+    startApiCall(close => {
+        this.http.get(EMPLOYEE_API + id).subscribe(res => {
+            next(res);
+            close();
+        });
     });
   }
 }
