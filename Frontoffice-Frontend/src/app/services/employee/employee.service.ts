@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {baseUrl} from '../../../configurations/server.config';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {startApiCall} from '../../utils/sweet-alert.utils';
 
 const EMPLOYEE_API = baseUrl('api/employees/');
@@ -18,8 +18,17 @@ export class EmployeeService {
 
   constructor(private http: HttpClient) {}
 
-  getAll(next: (res: any) => void) {
-    this.http.get(EMPLOYEE_API).subscribe(res => {
+  getAll(ignorePhoto: boolean, next: (res: any) => void) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      params: new HttpParams()
+    };
+    if (ignorePhoto) {
+      httpOptions.params = httpOptions.params.set('ignorePhoto', ignorePhoto);
+    }
+    this.http.get(EMPLOYEE_API, httpOptions).subscribe(res => {
       next(res);
     });
   }
