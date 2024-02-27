@@ -1,0 +1,76 @@
+<main>
+    <section class="section-profile-cover section-shaped my-0">
+        <!-- Circles background -->
+        <div class="shape shape-style-1 shape-default">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <!-- SVG separator -->
+        <div class="container shape-container d-flex align-items-center py-lg">
+            <div class="col px-0">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-lg-6 text-center">
+                        <img src="./assets/img/logo.png" style="width: 200px;" class="img-fluid">
+                        <p class="lead text-white">Prenez rendez-vous dès maintenant pour une expérience encore plus satisfaisante !</p>
+                        <div class="btn-wrapper mt-5">
+                            <button class="btn btn-lg btn-white btn-icon mb-3 mb-sm-0">
+                                <span class="btn-inner--icon"><i class="fa fa-bookmark"></i></span>
+                                <span class="btn-inner--text">Prendre rendez-vous</span>
+                            </button>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section section-lg">
+        <div class="container">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th class="text-center">Date</th>
+                    <th>Employé</th>
+                    <th>Services</th>
+                    <th class="text-right">Prix total</th>
+<!--                    <th class="text-right">Salary</th>-->
+<!--                    <th class="text-right">Actions</th>-->
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let task of tasks.task">
+                    <td class="text-center">{{formatDateTime(task.date)}}</td>
+                    <td>{{task.employee.name}}</td>
+                    <td class="text-right">
+                        <ul>
+                            <li *ngFor="let service of task.services">{{service.name}}</li>
+                        </ul>
+                    </td>
+                    <td></td>
+<!--                    <td class="text-right">&euro; 99,225</td>-->
+<!--                    <td class="td-actions text-right">-->
+<!--                        <button type="button" rel="tooltip" class="btn btn-info btn-icon btn-sm " data-original-title=""-->
+<!--                                title="">-->
+<!--                            <i class="ni ni-circle-08 pt-1"></i>-->
+<!--                        </button>-->
+<!--                        <button type="button" rel="tooltip" class="btn btn-success btn-icon btn-sm "-->
+<!--                                data-original-title="" title="">-->
+<!--                            <i class="ni ni-settings-gear-65 pt-1"></i>-->
+<!--                        </button>-->
+<!--                        <button type="button" rel="tooltip" class="btn btn-danger btn-icon btn-sm "-->
+<!--                                data-original-title="" title="">-->
+<!--                            <i class="ni ni-fat-remove pt-1"></i>-->
+<!--                        </button>-->
+<!--                    </td>-->
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>
