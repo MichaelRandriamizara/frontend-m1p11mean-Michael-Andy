@@ -51,6 +51,7 @@
                                                 bindLabel="name"
                                                 bindValue="_id"
                                                 [multiple]="true"
+                                                (change)="onServiceSelect($event)"
                                                 [(ngModel)]="form.services"
                                                 required
                                         >
@@ -66,7 +67,7 @@
                                                name="start"
                                                [(ngModel)]="form.start"
                                                required
-                                               email>
+                                               >
                                     </div>
                                 </div>
                                 <div class="form-group" [ngClass]="{'focused':focus2===true}">
@@ -80,6 +81,17 @@
                                                required>
                                     </div>
                                 </div>
+                                <div class="form-group" [ngClass]="{'focused':focus4===true}">
+                                    <div class="input-group input-group-alternative">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-mobile-button"></i></span>
+                                        </div>
+                                        <input class="form-control" placeholder="Contact" type="text" (focus)="focus4=true" (blur)="focus4=false"
+                                               name="phone"
+                                               [(ngModel)]="form.phone"
+                                               required>
+                                    </div>
+                                </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary mt-4">Prendre rendez-vous</button>
                                 </div>
@@ -87,6 +99,36 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section *ngIf="propositions !== undefined && propositions !== null && propositions.length > 0" class="section section-lg">
+        <div class="container">
+            <div class="text-center text-muted mb-4">
+                <small>Propositions de dates</small>
+            </div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th class="text-center">Date</th>
+                    <th>Employé</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let proposition of propositions">
+                    <td>
+                        <!-- Ajoutez ici votre bouton radio -->
+                        <input type="radio" name="selectedProposition" (change)="selectProposition(proposition)">
+                    </td>
+                    <td class="text-center">{{formatDateTime(proposition.date)}}</td>
+                    <td>{{proposition.employee.name}}</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="text-center">
+                <button [disabled]="selectedProposition === undefined || selectedProposition === null || selectProposition === '' " class="btn btn-primary mt-4" (click)="onConfirm()">Confirmer</button>
             </div>
         </div>
     </section>
