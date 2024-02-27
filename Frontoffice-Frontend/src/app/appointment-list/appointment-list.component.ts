@@ -10,9 +10,11 @@ import {formatDateTime} from '../utils/string.utils';
   styleUrls: ['./appointment-list.component.css']
 })
 export class AppointmentListComponent implements OnInit {
+  constructor(private storageService: StorageService, private router: Router, private taskService: TaskService) { }
 
   tasks: any;
-  constructor(private storageService: StorageService, private router: Router, private taskService: TaskService) { }
+
+  protected readonly formatDateTime = formatDateTime;
 
   ngOnInit(): void {
     if (this.storageService.getUser() == null) {
@@ -26,6 +28,4 @@ export class AppointmentListComponent implements OnInit {
       console.log(data.data);
     });
   }
-
-  protected readonly formatDateTime = formatDateTime;
 }
