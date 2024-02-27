@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {StorageService} from '../services/storage.service';
 import {Router} from '@angular/router';
 import {TaskService} from '../services/task/task.service';
-import {formatDateTime} from '../utils/string.utils';
+import {formatDateTime, formatDouble} from '../utils/string.utils';
 
 @Component({
   selector: 'app-appointment-list',
@@ -28,4 +28,6 @@ export class AppointmentListComponent implements OnInit {
       console.log(data.data);
     });
   }
+
+  protected readonly formatDouble = formatDouble;
 }

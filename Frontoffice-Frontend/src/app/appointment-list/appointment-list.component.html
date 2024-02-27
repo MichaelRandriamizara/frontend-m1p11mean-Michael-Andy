@@ -52,7 +52,7 @@
                             <li *ngFor="let service of task.task.services">{{service.service.name}}</li>
                         </ul>
                     </td>
-                    <td class="text-right">{{task.price}} Ariary</td>
+                    <td class="text-right">{{formatDouble(task.price)}} Ariary</td>
 <!--                    <td class="text-right">&euro; 99,225</td>-->
 <!--                    <td class="td-actions text-right">-->
 <!--                        <button type="button" rel="tooltip" class="btn btn-info btn-icon btn-sm " data-original-title=""-->
