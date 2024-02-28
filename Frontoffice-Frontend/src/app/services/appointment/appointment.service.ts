@@ -36,6 +36,7 @@ export class AppointmentService {
               'userid': this.storageService.getUser().id,
           }),
       };
+      data.appointment = true;
       startApiCall(close => {
           this.http.post(APPOINTMENT_API + 'confirm', data, httpOptions).subscribe(res => {
               next(res);
