@@ -1,0 +1,14 @@
+
+.round-image-container {
+    width: 200px; /* Set your desired width */
+    height: 200px; /* Set your desired height */
+    overflow: hidden;
+    border-radius: 50%; /* Make it round */
+    position: relative;
+}
+.round-image {
+    width: 100%; /* Ensure the image fills the container */
+    height: 100%; /* Ensure the image fills the container */
+    object-fit: cover; /* Cut the image if it's too big and maintain aspect ratio */
+    border-radius: 50%; /* Keep it round */
+}

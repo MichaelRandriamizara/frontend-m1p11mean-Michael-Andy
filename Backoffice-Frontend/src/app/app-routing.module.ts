@@ -27,9 +27,21 @@ const routes: Routes = [
     children: [
       {
         path: 'dashboard',
-        canActivate: [getAuthGuard(AUTH.EMPLOYEE)],
+        canActivate: [getAuthGuard(AUTH.ADMIN)],
         loadChildren: () =>
           import('./views/dashboard/dashboard.module').then((m) => m.DashboardModule)
+      },
+      {
+        path: 'tache',
+        canActivate: [getAuthGuard(AUTH.EMPLOYEE)],
+        loadChildren: () =>
+          import('./task/task.module').then((m) => m.TaskModule)
+      },
+      {
+        path: 'profil',
+        canActivate: [getAuthGuard(AUTH.EMPLOYEE)],
+        loadChildren: () =>
+          import('./profil-employee/profil-employee.module').then((m) => m.ProfilEmployeeModule)
       },
       {
         path: 'theme',

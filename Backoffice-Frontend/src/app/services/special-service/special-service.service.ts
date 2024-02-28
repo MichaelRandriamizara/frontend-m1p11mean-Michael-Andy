@@ -29,4 +29,31 @@ export class SpecialServiceService {
     })
   }
 
+  findCurrent(next: (res: any) => void) {
+    startApiCall(close => {
+      this.http.get(DEP_API + 'currents', this.httpOptions).subscribe(res => {
+        close();
+        next(res);
+      })
+    })
+  }
+
+  findAll(next: (res: any) => void) {
+    startApiCall(close => {
+      this.http.get(DEP_API, this.httpOptions).subscribe(res => {
+        close();
+        next(res);
+      })
+    })
+  }
+
+  delete(id: string, next: (res: any) => void) {
+    startApiCall(close => {
+      this.http.delete(DEP_API + id, this.httpOptions).subscribe(res => {
+        close();
+        next(res);
+      })
+    })
+  }
+
 }

@@ -3,6 +3,11 @@ import { Router, NavigationEnd } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import { LocationStrategy, PlatformLocation, Location } from '@angular/common';
 import { filter, Subscription } from 'rxjs';
+import * as io from 'socket.io-client';
+import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
+import {baseUrl} from '../configurations/server.config';
+import {MatDialog} from '@angular/material/dialog';
+import Swal from 'sweetalert2';
 
 var didScroll;
 var lastScrollTop = 0;
@@ -16,8 +21,9 @@ var navbarHeight = 0;
 })
 export class AppComponent implements OnInit {
     private _router: Subscription;
-
-    constructor( private renderer : Renderer2, private router: Router, @Inject(DOCUMENT,) private document: any, private element : ElementRef, public location: Location) {}
+    private socket: any;
+    constructor( private renderer : Renderer2, private router: Router, @Inject(DOCUMENT,) private document: any, private element : ElementRef, public location: Location, private snackBar: MatSnackBar, public dialog: MatDialog) {
+    }
     @HostListener('window:scroll', ['$event'])
     hasScrolled() {
 
@@ -51,8 +57,10 @@ export class AppComponent implements OnInit {
 
         lastScrollTop = st;
     };
+
+
     ngOnInit() {
-      var navbar : HTMLElement = this.element.nativeElement.children[0].children[0];
+        var navbar : HTMLElement = this.element.nativeElement.children[0].children[0];
       this._router = this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event: NavigationEnd) => {
           if (window.outerWidth > 991) {
               window.document.children[0].scrollTop = 0;
@@ -71,5 +79,23 @@ export class AppComponent implements OnInit {
           });
       });
       this.hasScrolled();
+        this.socket = io(baseUrl(''), { transports : ['websocket'] }); // Replace with your server URL
+
+        this.socket.on('specialOfferCreated', (data: any) => {
+            // Handle the incoming notification
+            console.log('Received special offer:', data);
+            Swal.fire({
+                title: 'Alerte!',
+                icon: 'info',
+                text: 'De nouvelles offres spéciales sont disponibles!'
+            }).then()
+        });
     }
+
+    // setupSocketConnection() {
+    //     this.socketService.setupSocketConnection();
+    // }
+
+
+
 }

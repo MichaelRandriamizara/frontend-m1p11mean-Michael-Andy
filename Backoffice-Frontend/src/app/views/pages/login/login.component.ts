@@ -11,7 +11,7 @@ import {StorageService} from "../../../services/auth/storage.service";
 })
 export class LoginComponent implements OnInit{
   form: any = {
-    email:"andy@mail.com",
+    email:"andy.nyr.rak@gmail.com",
     password: "1234"
   };
 

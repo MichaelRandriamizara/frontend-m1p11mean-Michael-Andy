@@ -40,8 +40,6 @@ export class TypeDepensePaymentService {
       httpOptions.params = httpOptions.params.set('year', yearFilter);
     }
 
-    console.log("HTTP Options:", httpOptions);
-
     startApiCall(close => {
       this.http.get(DEP_API, httpOptions).subscribe(ObserverObject(res => {
         close();
