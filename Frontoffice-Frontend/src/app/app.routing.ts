@@ -23,6 +23,7 @@ const routes: Routes = [
     { path: 'profil-service/:id', component: ProfilServiceComponent},
     { path: 'liste-rendez-vous', component: AppointmentListComponent},
     { path: 'team', component: OurTeamComponent},
+    { path: 'appointment', loadChildren: () => import('./appointment/appointment.module').then(m => m.AppointmentModule) },
     { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 

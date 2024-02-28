@@ -1,0 +1,135 @@
+<main>
+    <section class="section section-shaped section-lg">
+        <div class="shape shape-style-1 bg-gradient-default">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="container pt-lg-md">
+            <div class="row justify-content-center">
+                <div class="col-lg-5">
+                    <div class="card bg-secondary shadow border-0">
+                        <div class="card-body px-lg-5 py-lg-5">
+                            <div class="text-center text-muted mb-4">
+                                <small>Prendre rendez-vous</small>
+                            </div>
+                            <form role="form"
+                                  name="form"
+                                  (ngSubmit)="f.form.valid && onSubmit()"
+                                  #f="ngForm"
+                                  novalidate>
+                                <div class="form-group" [ngClass]="{'focused':focus3===true}">
+                                    <div class="input-group input-group-alternative mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-badge"></i></span>
+                                        </div>
+                                        <ng-select
+                                                class="form-control"
+                                                [items]="employees"
+                                                bindLabel="name"
+                                                bindValue="_id"
+                                                [multiple]="false"
+                                                [(ngModel)]="form.employee"
+                                                required
+                                        >
+                                        </ng-select>
+                                    </div>
+                                </div>
+                                <div class="form-group" [ngClass]="{'focused':focus===true}">
+                                    <div class="input-group input-group-alternative mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-cart"></i></span>
+                                        </div>
+                                        <ng-select
+                                                class="form-control"
+                                                [items]="services"
+                                                bindLabel="name"
+                                                bindValue="_id"
+                                                [multiple]="true"
+                                                (change)="onServiceSelect($event)"
+                                                [(ngModel)]="form.services"
+                                                required
+                                        >
+                                        </ng-select>
+                                    </div>
+                                </div>
+                                <div class="form-group" [ngClass]="{'focused':focus1===true}">
+                                    <div class="input-group input-group-alternative mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                                        </div>
+                                        <input class="form-control" placeholder="Entre le :" type="datetime-local" (focus)="focus1=true" (blur)="focus1=false"
+                                               name="start"
+                                               [(ngModel)]="form.start"
+                                               required
+                                               >
+                                    </div>
+                                </div>
+                                <div class="form-group" [ngClass]="{'focused':focus2===true}">
+                                    <div class="input-group input-group-alternative">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                                        </div>
+                                        <input class="form-control" placeholder="Et le :" type="datetime-local" (focus)="focus2=true" (blur)="focus2=false"
+                                               name="end"
+                                               [(ngModel)]="form.end"
+                                               required>
+                                    </div>
+                                </div>
+                                <div class="form-group" [ngClass]="{'focused':focus4===true}">
+                                    <div class="input-group input-group-alternative">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-mobile-button"></i></span>
+                                        </div>
+                                        <input class="form-control" placeholder="Contact" type="text" (focus)="focus4=true" (blur)="focus4=false"
+                                               name="phone"
+                                               [(ngModel)]="form.phone"
+                                               required>
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary mt-4">Prendre rendez-vous</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section *ngIf="propositions !== undefined && propositions !== null && propositions.length > 0" class="section section-lg">
+        <div class="container">
+            <div class="text-center text-muted mb-4">
+                <small>Propositions de dates</small>
+            </div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th class="text-center">Date</th>
+                    <th>Employé</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let proposition of propositions">
+                    <td>
+                        <!-- Ajoutez ici votre bouton radio -->
+                        <input type="radio" name="selectedProposition" (change)="selectProposition(proposition)">
+                    </td>
+                    <td class="text-center">{{formatDateTime(proposition.date)}}</td>
+                    <td>{{proposition.employee.name}}</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="text-center">
+                <button [disabled]="selectedProposition === undefined || selectedProposition === null || selectProposition === '' " class="btn btn-primary mt-4" (click)="onConfirm()">Confirmer</button>
+            </div>
+        </div>
+    </section>
+</main>

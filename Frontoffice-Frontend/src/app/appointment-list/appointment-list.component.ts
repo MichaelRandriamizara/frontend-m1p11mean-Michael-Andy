@@ -29,5 +29,9 @@ export class AppointmentListComponent implements OnInit {
     });
   }
 
+  navigateToCreateAppointment() {
+    this.router.navigate(['/appointment/create']);
+  }
+
   protected readonly formatDouble = formatDouble;
 }

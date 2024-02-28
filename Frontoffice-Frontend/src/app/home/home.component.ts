@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ServiceService} from '../services/service/service.service';
+import { Router } from '@angular/router';
+
 
 @Component({
     selector: 'app-home',
@@ -17,7 +19,7 @@ export class HomeComponent implements OnInit {
 
     focus;
     focus1;
-    constructor(private serviceService: ServiceService) { }
+    constructor(private serviceService: ServiceService, private router: Router) { }
 
     ngOnInit() {
         this.findCurrentOffers();
@@ -28,5 +30,9 @@ export class HomeComponent implements OnInit {
             this.specialOffers = data;
             console.log(this.specialOffers);
         });
+    }
+
+    navigateToCreateAppointment() {
+        this.router.navigate(['/appointment/create']);
     }
 }

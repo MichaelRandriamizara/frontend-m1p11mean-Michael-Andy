@@ -21,7 +21,9 @@ import {HttpClientModule} from '@angular/common/http';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import {MatDialogModule} from '@angular/material/dialog';
+import {AppointmentService} from './services/appointment/appointment.service';
 import {baseUrl} from '../configurations/server.config';
+import {NgSelectModule} from '@ng-select/ng-select';
 
 const config: SocketIoConfig = { url: baseUrl(''), options: {} };
 @NgModule({
@@ -44,11 +46,13 @@ const config: SocketIoConfig = { url: baseUrl(''), options: {} };
     HttpClientModule,
     MatSnackBarModule,
     SocketIoModule.forRoot(config),
-    MatDialogModule
+    MatDialogModule,
+    NgSelectModule
   ],
   providers: [
       AuthService,
-      StorageService
+      StorageService,
+      AppointmentService
   ],
   bootstrap: [AppComponent]
 })
