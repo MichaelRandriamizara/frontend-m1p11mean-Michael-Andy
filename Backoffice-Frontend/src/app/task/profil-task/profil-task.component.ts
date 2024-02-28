@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {TaskService} from "../../services/task/task.service";
-import {formatDateTime, getStatus} from "../../utils/string.util";
+import {formatDateTime, formatDouble, getStatus} from "../../utils/string.util";
 
 @Component({
   selector: 'app-profil-task',
@@ -50,4 +50,5 @@ export class ProfilTaskComponent implements OnInit{
 
   protected readonly formatDateTime = formatDateTime;
   protected readonly getStatus = getStatus;
+  protected readonly formatDouble = formatDouble;
 }

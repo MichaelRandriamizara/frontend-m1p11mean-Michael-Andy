@@ -11,7 +11,7 @@
         <p><b>Client:</b> {{task.user ? task.user.name : 'Utilisateur non defini'}}</p>
         <p><b>Date:</b> {{formatDateTime(task.date)}}</p>
         <p><b>Status:</b> {{getStatus(task.status)}}</p>
-        <p><b>Prix total:</b> {{totalPrices}}</p>
+        <p><b>Prix total:</b> {{totalPrices}} Ariary</p>
         <p><b>Payé:</b> {{task.paid ? 'Oui' : 'Non'}}</p>
       </div>
 
@@ -26,15 +26,17 @@
         <thead>
           <tr>
             <th>Service</th>
-            <th>Prix</th>
+            <th>Prix du service</th>
             <th>Promotion</th>
+            <th>Prix avec promotion</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let service of task.services">
             <td>{{service.service?.name}}</td>
-            <td>{{service.service?.price}}</td>
+            <td>{{formatDouble(service.service?.price)}} Ariary</td>
             <td>{{service?.promotion}} %</td>
+            <td>{{formatDouble(service.service?.price * (1 - service.promotion / 100))}} Ariary</td>
           </tr>
         </tbody>
       </table>
