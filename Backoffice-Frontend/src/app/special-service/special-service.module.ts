@@ -16,10 +16,12 @@ import {MatColumnDef, MatTable} from "@angular/material/table";
 import {FormsModule} from "@angular/forms";
 import {AddSpecialServiceComponent} from "./add-special-service/add-special-service.component";
 import {NgSelectModule} from "@ng-select/ng-select";
+import {SpecialServiceComponent} from "./special-service/special-service.component";
+import {NgxPaginationModule} from "ngx-pagination";
 
 
 @NgModule({
-  declarations: [AddSpecialServiceComponent],
+  declarations: [AddSpecialServiceComponent,SpecialServiceComponent],
   imports: [
     CommonModule,
     SpecialServiceRoutingModule,
@@ -36,7 +38,8 @@ import {NgSelectModule} from "@ng-select/ng-select";
     FormControlDirective,
     FormsModule,
     ButtonDirective,
-    NgSelectModule
+    NgSelectModule,
+    NgxPaginationModule
   ]
 })
 export class SpecialServiceModule { }
