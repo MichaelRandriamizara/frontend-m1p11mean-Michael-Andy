@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   focus;
   focus1;
   form: any = {
-    email: 'test@mail.com',
+    email: 'mkrandriamizara@gmail.com',
     password: '0000'
   };
   isLoggedIn = false;
