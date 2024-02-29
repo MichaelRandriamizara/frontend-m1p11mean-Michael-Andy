@@ -3,3 +3,7 @@
 .visually-hidden {
   display: none;
 }
+
+.ng-option {
+  background-color: #eeeeee;
+}
